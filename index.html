@@ -1,216 +1,904 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Archon Tech – Website Design & Digital Marketing</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --teal: #00B4A6;
+    --purple: #5B2D8E;
+    --green: #1A7A3C;
+    --teal-light: #00D4C4;
+    --purple-light: #7B4DBE;
+    --bg: #050A0F;
+    --bg2: #080F16;
+    --surface: #0D1720;
+    --surface2: #111F2C;
+    --text: #EDF2F7;
+    --muted: #7A8FA6;
+    --border: rgba(0,180,166,0.15);
+  }
 
-    <title> Archon Tech</title>
-    <meta name="description" content="Archon Tech – Leading website development company . We build modern responsive websites, e-commerce stores, SEO & digital marketing at affordable prices. Get free mockup on WhatsApp!">
-    <meta name="keywords" content="website development, web design company , website development, ecommerce website , digital marketing chennai, seo company chennai, low cost website chennai, best web developers coimbatore, responsive website kerala">
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    <meta property="og:title" content="Archon Tech – Best Website Development Company">
-    <meta property="og:description" content="Modern websites, e-commerce, SEO & WhatsApp marketing – Free mockup in 5 mins!">
-    <meta property="og:image" content="logo13.png">
-    <meta property="og:url" content="https://yourdomain.com">
-    <meta property="og:type" content="website">
+  html { scroll-behavior: smooth; }
 
-    <link rel="icon" href="logo13.png" type="image/x-icon">
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+  }
 
-    <style>
-        *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif}
-        :root{
-            --primary:#1a73e8;
-            --about-1:url('a1.jpg');--about-2:url('a2.jpg');--about-3:url('a3.jpg');
-            --service-1:url('c1.jpg');--service-2:url('c2.jpg');--service-3:url('c3.jpg');
-            --service-4:url('c4.jpg');--service-5:url('c5.jpg');
-        }
-        body{line-height:1.7;color:#333;overflow-x:hidden;background:#fff}
-        header{background:#fff;padding:1rem 0;position:fixed;width:100%;top:0;z-index:1000;box-shadow:0 4px 15px rgba(0,0,0,0.1)}
-        nav{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding:0 20px}
-        nav .logo h1{font-size:1.7rem;color:var(--primary);font-weight:700}
-        nav .logo img{height:42px}
-        .hamburger{display:none;font-size:1.8rem;cursor:pointer;color:var(--primary)}
-        .nav-links{display:flex;gap:35px}
-        .nav-links a{color:#444;text-decoration:none;font-weight:500;font-size:1.05rem;transition:color .3s}
-        .nav-links a:hover{color:var(--primary)}
-        section{padding:100px 20px;max-width:1200px;margin:0 auto}
-        #home{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;color:white}
-        .home-video{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:-2}
-        .home-overlay{position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(rgba(0,0,0,0.45),rgba(0,0,0,0.7));z-index:-1}
-        #home h1{font-size:3.4rem;margin-bottom:20px;text-shadow:0 4px 15px rgba(0,0,0,0.6)}
-        #home p{font-size:1.35rem;max-width:750px;margin:0 auto 40px}
-        .cta-button{padding:16px 40px;background:var(--primary);color:white;border-radius:50px;text-decoration:none;font-weight:600;font-size:1.1rem;box-shadow:0 10px 25px rgba(26,115,232,0.3);transition:all .3s}
-        .cta-button:hover{background:#0d47a1;transform:translateY(-4px)}
-        h2{text-align:center;font-size:2.6rem;margin-bottom:60px;color:#222;position:relative}
-        h2::after{content:'';width:90px;height:5px;background:var(--primary);display:block;margin:18px auto;border-radius:3px}
-        .about-grid,.service-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:30px}
-        .about-card,.service-card{position:relative;background-size:cover;background-position:center;border-radius:18px;overflow:hidden;height:280px;padding:30px;color:white;text-align:center;display:flex;flex-direction:column;justify-content:center;align-items:center;opacity:0;transform:translateY(40px);transition:all .6s;box-shadow:0 10px 30px rgba(0,0,0,0.2)}
-        .about-card::before,.service-card::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(135deg,rgba(26,115,232,0.75),rgba(0,0,0,0.65));z-index:1}
-        .about-card > *,.service-card > *{position:relative;z-index:2}
-        .about-card.visible,.service-card.visible{opacity:1;transform:translateY(0)}
-        .about-card:hover,.service-card:hover{transform:translateY(-12px) scale(1.03);box-shadow:0 20px 40px rgba(0,0,0,0.3)}
-        .about-card:nth-child(1){background-image:var(--about-1)}.about-card:nth-child(2){background-image:var(--about-2)}.about-card:nth-child(3){background-image:var(--about-3)}
-        .service-card:nth-child(1){background-image:var(--service-1)}.service-card:nth-child(2){background-image:var(--service-2)}
-        .service-card:nth-child(3){background-image:var(--service-3)}.service-card:nth-child(4){background-image:var(--service-4)}.service-card:nth-child(5){background-image:var(--service-5)}
-        .team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:50px;justify-items:center}
-        .team-card{text-align:center;opacity:0;transform:translateY(30px);transition:all .6s}
-        .team-card.visible{opacity:1;transform:translateY(0)}
-        .team-card:hover{transform:translateY(-12px)}
-        .team-card .circle-img{width:200px;height:200px;border-radius:50%;overflow:hidden;margin:0 auto 20px;border:8px solid #fff;box-shadow:0 15px 40px rgba(0,0,0,0.25)}
-        .team-card img{width:100%;height:100%;object-fit:cover}
-        .team-card h3 a{color:var(--primary);font-size:1.35rem;text-decoration:none;font-weight:600}
-        .team-card h3 a:hover{text-decoration:underline}
-        .team-card p{color:#555;font-style:italic;margin-top:8px}
-        .trust-badges{display:flex;flex-wrap:wrap;gap:40px;justify-content:center;margin:70px 0}
-        .trust-badges img{width:120px;height:120px;object-fit:contain;padding:15px;background:white;border-radius:50%;box-shadow:0 10px 30px rgba(0,0,0,0.12);transition:all .3s}
-        .trust-badges img:hover{transform:scale(1.12)}
-        #contact form{max-width:650px;margin:0 auto;background:#f8f9fa;padding:45px;border-radius:18px;box-shadow:0 15px 40px rgba(0,0,0,0.1)}
-        #contact input,#contact textarea{width:100%;padding:16px;border:1px solid #ddd;border-radius:12px;margin-bottom:20px;font-size:1rem}
-        #contact button{width:100%;padding:16px;background:var(--primary);color:white;border:none;border-radius:12px;font-size:1.2rem;font-weight:600;cursor:pointer;transition:.3s}
-        #contact button:hover{background:#0d47a1}
-        .whatsapp-cta-badge{background:#25d366;color:white;padding:35px 50px;border-radius:25px;text-align:center;max-width:700px;margin:80px auto;box-shadow:0 25px 60px rgba(37,193,92,0.35);font-size:1.7rem;font-weight:bold}
-        .whatsapp-cta-badge a{color:white;text-decoration:none}
-        .wa-float{position:fixed;bottom:25px;right:25px;z-index:9999}
-        .wa-float img{width:70px;border-radius:50%;box-shadow:0 12px 35px rgba(37,193,92,0.5);animation:pulse 2s infinite}
-        @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
-        footer{background:#111;color:#ccc;text-align:center;padding:50px 20px}
-        .social-links a{color:var(--primary);margin:0 15px;text-decoration:none;font-weight:500}
+  /* ─── NOISE OVERLAY ─── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 0; opacity: 0.4;
+  }
 
-        @media (max-width:768px){
-            .hamburger{display:block}
-            .nav-links{position:absolute;top:70px;left:0;width:100%;background:var(--primary);flex-direction:column;padding:20px 0;display:none}
-            .nav-links.active{display:flex}
-            .nav-links a{color:white;padding:15px;font-size:1.2rem}
-            #home h1{font-size:2.6rem}
-            .team-card .circle-img{width:170px;height:170px}
-            .trust-badges img{width:90px;height:90px}
-        }
-    </style>
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 5%;
+    background: rgba(5,10,15,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    display: flex; align-items: center; gap: 0.75rem;
+    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.3rem;
+    color: var(--text); text-decoration: none;
+  }
+
+  .nav-logo svg { width: 36px; height: 36px; }
+
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    color: var(--muted); text-decoration: none; font-size: 0.9rem;
+    font-weight: 500; letter-spacing: 0.02em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--teal); }
+
+  .nav-cta {
+    background: linear-gradient(135deg, var(--teal), var(--purple-light));
+    color: #fff; border: none; padding: 0.6rem 1.4rem;
+    border-radius: 6px; font-size: 0.9rem; font-weight: 600;
+    cursor: pointer; font-family: 'DM Sans', sans-serif;
+    transition: opacity 0.2s, transform 0.2s;
+    text-decoration: none;
+  }
+  .nav-cta:hover { opacity: 0.85; transform: translateY(-1px); }
+
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .hamburger span { width: 24px; height: 2px; background: var(--text); border-radius: 2px; transition: 0.3s; }
+
+  /* ─── HERO ─── */
+  #home {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 8rem 5% 5rem;
+    position: relative; overflow: hidden;
+  }
+
+  .hero-glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    pointer-events: none;
+  }
+  .glow-1 { width: 600px; height: 600px; background: rgba(0,180,166,0.12); top: -100px; right: -100px; }
+  .glow-2 { width: 500px; height: 500px; background: rgba(91,45,142,0.12); bottom: -50px; left: -100px; }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: rgba(0,180,166,0.1); border: 1px solid rgba(0,180,166,0.3);
+    color: var(--teal); border-radius: 100px; padding: 0.4rem 1rem;
+    font-size: 0.8rem; font-weight: 600; letter-spacing: 0.05em;
+    text-transform: uppercase; margin-bottom: 2rem;
+    width: fit-content;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .hero-badge::before {
+    content: ''; width: 6px; height: 6px; background: var(--teal);
+    border-radius: 50%; animation: pulse 1.5s infinite;
+  }
+
+  @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.3; } }
+
+  .hero-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.8rem, 7vw, 6rem);
+    font-weight: 800; line-height: 1.05;
+    max-width: 900px;
+    animation: fadeUp 0.7s 0.1s ease both;
+  }
+
+  .hero-title .accent-teal { color: var(--teal); }
+  .hero-title .accent-purple { color: var(--purple-light); }
+
+  .hero-sub {
+    margin-top: 1.5rem; max-width: 520px;
+    color: var(--muted); font-size: 1.1rem; line-height: 1.7;
+    font-weight: 300;
+    animation: fadeUp 0.7s 0.2s ease both;
+  }
+
+  .hero-actions {
+    margin-top: 2.5rem; display: flex; gap: 1rem; flex-wrap: wrap;
+    animation: fadeUp 0.7s 0.3s ease both;
+  }
+
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: linear-gradient(135deg, var(--teal), var(--purple-light));
+    color: #fff; padding: 0.85rem 2rem; border-radius: 8px;
+    font-weight: 600; font-size: 1rem; text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 0 30px rgba(0,180,166,0.25);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 40px rgba(0,180,166,0.4); }
+
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    border: 1px solid var(--border); color: var(--text);
+    padding: 0.85rem 2rem; border-radius: 8px;
+    font-weight: 500; font-size: 1rem; text-decoration: none;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--teal); background: rgba(0,180,166,0.05); }
+
+  .hero-stats {
+    margin-top: 5rem; display: flex; gap: 3rem; flex-wrap: wrap;
+    animation: fadeUp 0.7s 0.4s ease both;
+  }
+
+  .stat-item { }
+  .stat-num {
+    font-family: 'Syne', sans-serif; font-size: 2.2rem; font-weight: 800;
+    background: linear-gradient(135deg, var(--teal), var(--purple-light));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .stat-label { color: var(--muted); font-size: 0.85rem; margin-top: 0.2rem; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ─── SECTION BASE ─── */
+  section { padding: 6rem 5%; position: relative; }
+  .section-label {
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--teal); margin-bottom: 1rem;
+  }
+  .section-title {
+    font-family: 'Syne', sans-serif; font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 800; line-height: 1.15; max-width: 600px;
+  }
+  .section-sub {
+    color: var(--muted); font-size: 1rem; line-height: 1.7;
+    max-width: 540px; margin-top: 1rem;
+  }
+
+  /* ─── ABOUT ─── */
+  #about { background: var(--bg2); }
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem; align-items: center; margin-top: 3rem;
+  }
+  .about-visual {
+    position: relative; height: 380px;
+  }
+  .about-card {
+    position: absolute; background: var(--surface);
+    border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem;
+  }
+  .about-card.main { inset: 0; display: flex; flex-direction: column; justify-content: center; }
+  .about-card.float1 { bottom: -20px; right: -20px; width: 180px; background: var(--surface2); }
+  .about-card.float2 { top: -20px; left: -20px; width: 160px; background: var(--surface2); }
+
+  .big-num {
+    font-family: 'Syne', sans-serif; font-size: 4rem; font-weight: 800;
+    background: linear-gradient(135deg, var(--teal), var(--green));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    line-height: 1;
+  }
+  .float-label { font-size: 0.75rem; color: var(--muted); margin-top: 0.3rem; }
+
+  .about-items { display: flex; flex-direction: column; gap: 1.5rem; }
+  .about-item { display: flex; gap: 1rem; align-items: flex-start; }
+  .about-icon {
+    width: 44px; height: 44px; border-radius: 10px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+  }
+  .about-icon.t { background: rgba(0,180,166,0.15); }
+  .about-icon.p { background: rgba(91,45,142,0.15); }
+  .about-icon.g { background: rgba(26,122,60,0.15); }
+  .about-item h4 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 0.3rem; }
+  .about-item p { color: var(--muted); font-size: 0.9rem; line-height: 1.6; }
+
+  /* ─── SERVICES ─── */
+  #services { }
+  .services-header { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1rem; margin-bottom: 3rem; }
+  .services-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .service-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 16px; padding: 2rem;
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    position: relative; overflow: hidden;
+  }
+  .service-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .service-card.c1::before { background: linear-gradient(90deg, var(--teal), transparent); }
+  .service-card.c2::before { background: linear-gradient(90deg, var(--purple-light), transparent); }
+  .service-card.c3::before { background: linear-gradient(90deg, var(--green), transparent); }
+  .service-card.c4::before { background: linear-gradient(90deg, var(--teal), var(--purple-light)); }
+  .service-card.c5::before { background: linear-gradient(90deg, var(--purple-light), var(--green)); }
+
+  .service-card:hover { transform: translateY(-6px); border-color: rgba(0,180,166,0.3); box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+  .service-card:hover::before { opacity: 1; }
+
+  .service-icon {
+    width: 52px; height: 52px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem; margin-bottom: 1.2rem;
+  }
+  .si1 { background: rgba(0,180,166,0.12); }
+  .si2 { background: rgba(91,45,142,0.12); }
+  .si3 { background: rgba(26,122,60,0.12); }
+  .si4 { background: rgba(0,180,166,0.12); }
+  .si5 { background: rgba(91,45,142,0.12); }
+
+  .service-card h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.1rem; margin-bottom: 0.6rem; }
+  .service-card p { color: var(--muted); font-size: 0.9rem; line-height: 1.6; }
+  .service-tag {
+    display: inline-block; margin-top: 1.2rem;
+    background: rgba(0,180,166,0.1); color: var(--teal);
+    border-radius: 100px; padding: 0.25rem 0.8rem; font-size: 0.75rem; font-weight: 600;
+  }
+
+  /* ─── PORTFOLIO ─── */
+  #portfolio { background: var(--bg2); }
+  .portfolio-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+  .portfolio-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 16px; overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .portfolio-card:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
+
+  .portfolio-thumb {
+    height: 200px; display: flex; align-items: center; justify-content: center;
+    font-size: 3rem; position: relative; overflow: hidden;
+  }
+  .pt1 { background: linear-gradient(135deg, rgba(0,180,166,0.2), rgba(91,45,142,0.2)); }
+  .pt2 { background: linear-gradient(135deg, rgba(26,122,60,0.2), rgba(0,180,166,0.2)); }
+  .pt3 { background: linear-gradient(135deg, rgba(91,45,142,0.2), rgba(26,122,60,0.2)); }
+
+  .mock-browser {
+    width: 85%; background: rgba(255,255,255,0.05); border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.1); overflow: hidden;
+  }
+  .mock-bar {
+    background: rgba(255,255,255,0.08); padding: 0.4rem 0.8rem;
+    display: flex; align-items: center; gap: 0.4rem;
+  }
+  .mock-dot { width: 8px; height: 8px; border-radius: 50%; }
+  .d1 { background: #ff5f57; } .d2 { background: #ffbd2e; } .d3 { background: #28c840; }
+  .mock-content { padding: 0.8rem; }
+  .mock-line { height: 6px; border-radius: 3px; margin-bottom: 5px; background: rgba(255,255,255,0.1); }
+  .mock-line.w80 { width: 80%; } .mock-line.w60 { width: 60%; } .mock-line.w90 { width: 90%; } .mock-line.w40 { width: 40%; }
+  .mock-rect { height: 40px; border-radius: 4px; background: rgba(0,180,166,0.2); margin-top: 0.5rem; }
+
+  .portfolio-info { padding: 1.5rem; }
+  .portfolio-info h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 0.4rem; }
+  .portfolio-info p { color: var(--muted); font-size: 0.85rem; }
+  .portfolio-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.8rem; }
+  .ptag {
+    font-size: 0.72rem; font-weight: 600; padding: 0.2rem 0.6rem;
+    border-radius: 4px; border: 1px solid;
+  }
+  .ptag.t { color: var(--teal); border-color: rgba(0,180,166,0.3); background: rgba(0,180,166,0.08); }
+  .ptag.p { color: var(--purple-light); border-color: rgba(123,77,190,0.3); background: rgba(123,77,190,0.08); }
+  .ptag.g { color: #4CAF50; border-color: rgba(76,175,80,0.3); background: rgba(76,175,80,0.08); }
+
+  .portfolio-notice {
+    margin-top: 3rem; text-align: center;
+    background: rgba(0,180,166,0.07); border: 1px solid rgba(0,180,166,0.2);
+    border-radius: 12px; padding: 1.5rem 2rem; color: var(--muted); font-size: 0.9rem;
+  }
+  .portfolio-notice strong { color: var(--teal); }
+
+  /* ─── PROCESS ─── */
+  #process { }
+  .process-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 3rem; position: relative; }
+  .process-steps::before {
+    content: ''; position: absolute; top: 28px; left: 10%; right: 10%; height: 1px;
+    background: linear-gradient(90deg, var(--teal), var(--purple-light), var(--green));
+    opacity: 0.3;
+  }
+  .process-step { text-align: center; padding: 0 1rem; }
+  .step-num {
+    width: 56px; height: 56px; border-radius: 50%; margin: 0 auto 1.2rem;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem;
+    position: relative; z-index: 1;
+  }
+  .sn1 { background: rgba(0,180,166,0.15); color: var(--teal); border: 2px solid rgba(0,180,166,0.4); }
+  .sn2 { background: rgba(91,45,142,0.15); color: var(--purple-light); border: 2px solid rgba(91,45,142,0.4); }
+  .sn3 { background: rgba(26,122,60,0.15); color: #4CAF50; border: 2px solid rgba(76,175,80,0.4); }
+  .sn4 { background: rgba(0,180,166,0.15); color: var(--teal); border: 2px solid rgba(0,180,166,0.4); }
+  .process-step h4 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 0.5rem; }
+  .process-step p { color: var(--muted); font-size: 0.85rem; line-height: 1.6; }
+
+  /* ─── TEAM ─── */
+  #team { background: var(--bg2); }
+  .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 3rem; }
+  .team-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 16px; padding: 1.8rem 1.5rem; text-align: center;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+  .team-card:hover { transform: translateY(-5px); border-color: rgba(0,180,166,0.3); }
+  .team-avatar {
+    width: 72px; height: 72px; border-radius: 50%; margin: 0 auto 1rem;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.4rem;
+    color: #fff;
+  }
+  .av1 { background: linear-gradient(135deg, var(--teal), var(--purple-light)); }
+  .av2 { background: linear-gradient(135deg, var(--purple-light), var(--green)); }
+  .av3 { background: linear-gradient(135deg, var(--green), var(--teal)); }
+  .av4 { background: linear-gradient(135deg, var(--teal), var(--green)); }
+  .team-card h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 0.3rem; }
+  .team-role { color: var(--teal); font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+
+  /* ─── CONTACT ─── */
+  #contact { }
+  .contact-wrapper {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem; margin-top: 3rem; align-items: start;
+  }
+  .contact-info h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.5rem; margin-bottom: 1rem; }
+  .contact-info p { color: var(--muted); font-size: 0.95rem; line-height: 1.7; margin-bottom: 2rem; }
+
+  .contact-item { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.2rem; }
+  .contact-item-icon {
+    width: 44px; height: 44px; border-radius: 10px;
+    background: rgba(0,180,166,0.1); border: 1px solid rgba(0,180,166,0.2);
+    display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+  .contact-item-text { font-size: 0.9rem; color: var(--muted); }
+  .contact-item-text a { color: var(--text); text-decoration: none; }
+  .contact-item-text a:hover { color: var(--teal); }
+
+  .contact-form { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 2.5rem; }
+  .form-group { margin-bottom: 1.2rem; }
+  .form-group label { display: block; font-size: 0.85rem; font-weight: 500; color: var(--muted); margin-bottom: 0.5rem; }
+  .form-group input, .form-group textarea, .form-group select {
+    width: 100%; background: var(--bg); border: 1px solid var(--border);
+    border-radius: 8px; padding: 0.8rem 1rem; color: var(--text);
+    font-family: 'DM Sans', sans-serif; font-size: 0.95rem;
+    transition: border-color 0.2s;
+    outline: none;
+  }
+  .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--teal); }
+  .form-group textarea { resize: vertical; min-height: 120px; }
+  .form-group select option { background: var(--bg); }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  .submit-btn {
+    width: 100%; background: linear-gradient(135deg, var(--teal), var(--purple-light));
+    color: #fff; border: none; padding: 1rem; border-radius: 8px;
+    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem;
+    cursor: pointer; transition: opacity 0.2s, transform 0.2s;
+    margin-top: 0.5rem;
+  }
+  .submit-btn:hover { opacity: 0.9; transform: translateY(-2px); }
+
+  /* ─── WA FLOAT ─── */
+  .wa-float {
+    position: fixed; bottom: 2rem; right: 2rem; z-index: 99;
+    width: 56px; height: 56px; border-radius: 50%;
+    background: #25D366; display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+    text-decoration: none; transition: transform 0.2s;
+  }
+  .wa-float:hover { transform: scale(1.1); }
+  .wa-float svg { width: 28px; height: 28px; fill: #fff; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--bg2); border-top: 1px solid var(--border);
+    padding: 3rem 5% 2rem;
+  }
+  .footer-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 2rem; margin-bottom: 2rem; }
+  .footer-brand { max-width: 300px; }
+  .footer-brand .nav-logo { margin-bottom: 1rem; }
+  .footer-brand p { color: var(--muted); font-size: 0.9rem; line-height: 1.6; }
+  .footer-links h4 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.9rem; margin-bottom: 1rem; }
+  .footer-links ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .footer-links a { color: var(--muted); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--teal); }
+  .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+  .footer-bottom p { color: var(--muted); font-size: 0.85rem; }
+  .social-links { display: flex; gap: 1rem; }
+  .social-links a {
+    width: 36px; height: 36px; border-radius: 8px; border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--muted); text-decoration: none; font-size: 0.85rem;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .social-links a:hover { border-color: var(--teal); color: var(--teal); }
+
+  /* ─── DIVIDER ─── */
+  .divider { height: 1px; background: var(--border); margin: 0 5%; }
+
+  /* ─── SCROLL REVEAL ─── */
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ─── MOBILE ─── */
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .nav-links.open { display: flex; flex-direction: column; position: fixed; top: 65px; left: 0; right: 0; background: rgba(5,10,15,0.97); padding: 2rem 5%; gap: 1.5rem; border-bottom: 1px solid var(--border); }
+    .hamburger { display: flex; }
+    .services-grid { grid-template-columns: 1fr 1fr; }
+    .about-grid { grid-template-columns: 1fr; }
+    .about-visual { display: none; }
+    .portfolio-grid { grid-template-columns: 1fr 1fr; }
+    .process-steps { grid-template-columns: 1fr 1fr; }
+    .process-steps::before { display: none; }
+    .team-grid { grid-template-columns: 1fr 1fr; }
+    .contact-wrapper { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 600px) {
+    .services-grid { grid-template-columns: 1fr; }
+    .portfolio-grid { grid-template-columns: 1fr; }
+    .team-grid { grid-template-columns: 1fr 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .hero-stats { gap: 2rem; }
+  }
+</style>
 </head>
 <body>
 
-    <header>
-        <nav>
-            <div class="logo">
-                <h1>Archon Tech</h1>
-                <img src="logo13.png" alt="Archon Tech – Website Development Company ">
-            </div>
-            <div class="hamburger">Menu</div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#team">Team</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#home" class="nav-logo">
+    <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="4" y="10" width="16" height="5" rx="2.5" fill="#00B4A6" transform="rotate(-45 4 10)" />
+      <path d="M10 22 L18 14 L26 22" stroke="#1A7A3C" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <rect x="22" y="12" width="14" height="5" rx="2.5" fill="#7B4DBE" transform="rotate(-90 22 12)"/>
+    </svg>
+    Archon Tech
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#team">Team</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="https://wa.me/918056394297" class="nav-cta" target="_blank">WhatsApp Us</a>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
 
-    <section id="home">
-        <video autoplay muted loop playsinline class="home-video">
-            <source src="h1.mp4" type="video/mp4">
-        </video>
-        <div class="home-overlay"></div>
-        <div style="max-width:900px;">
-            <h1>Best Website Development Company</h1>
-            <p>Modern, responsive websites & e-commerce stores that grow your business fast</p>
-            <a href="#contact" class="cta-button">Get Quote</a>
-            <a href="https://wa.me/918056394297" style="display:inline-block;margin-left:20px;background:#25d366;color:white;padding:16px 40px;border-radius:50px;text-decoration:none;font-weight:bold;">
-                Free Mockup on WhatsApp
-            </a>
-        </div>
-    </section>
-
-    <section id="about">
-        <h2>Leading Web Design Company </h2>
-        <div class="about-grid">
-            <div class="about-card"><h3>Who We Are</h3><p>Top-rated website development company </p></div>
-            <div class="about-card"><h3>What We Do</h3><p>Custom websites, e-commerce, SEO & digital marketing solutions</p></div>
-            <div class="about-card"><h3>Our Vision</h3><p>To help every small business get a powerful online presence</p></div>
-        </div>
-
-        <div class="trust-badges">
-            <img src="b1.jpg" alt="Google Partner – Website Development Chennai">
-            <img src="b2.jpg" alt="Trusted Web Design Company Coimbatore">
-            <img src="b3.jpg" alt="100+ Happy Clients in Chennai">
-            <img src="b4.jpg" alt="5-Star Rated Website Company">
-            <img src="b5.jpg" alt="Best Digital Marketing Agency Chennai">
-        </div>
-    </section>
-
-    <section id="team">
-        <h2>Our Expert Team </h2>
-        <div class="team-grid">
-            <div class="team-card">
-                <div class="circle-img"><img src="founder.png" alt="Abinaya Sri – Founder Archon Tech "></div>
-                <h3><a href="https://archon-tech226.github.io/abinaya/" target="_blank">Abinaya Sri</a></h3><p>Founder</p>
-            </div>
-            <div class="team-card">
-                <div class="circle-img"><img src="founder.png" alt="Janaganandhini – Co-Founder"></div>
-                <h3><a href="https://janaganandhini996.github.io/portfolio-nandhini" target="_blank">Janaganandhini</a></h3><p>Co-Founder</p>
-            </div>
-            <div class="team-card">
-                <div class="circle-img"><img src="eo.png" alt="Vel Murugan – Executive Officer"></div>
-                <h3><a href="#" target="_blank">Vel Murugan</a></h3><p>Executive Officer</p>
-            </div>
-            <div class="team-card">
-                <div class="circle-img"><img src="dm.png" alt="Afna Fathima – Digital Marketer "></div>
-                <h3><a href="https://digitalmarketer-source.github.io/portfolio__/" target="_blank">Afna Fathima</a></h3><p>Digital Marketer</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="services">
-        <h2>Website Development & Digital Marketing Services</h2>
-        <div class="service-grid">
-            <div class="service-card"><h3>Website Development </h3><p>Fast, modern & mobile-friendly websites</p></div>
-            <div class="service-card"><h3>E-Commerce Website </h3><p>Full online store with payment gateway</p></div>
-            <div class="service-card"><h3>Digital Marketing </h3><p>Google Ads, Instagram & Facebook marketing</p></div>
-            <div class="service-card"><h3>SEO Services </h3><p>Rank higher on Google search results</p></div>
-            <div class="service-card"><h3>Website Maintenance</h3><p>Monthly updates & support</p></div>
-        </div>
-    </section>
-
-    <section id="contact">
-        <h2>Contact Us </h2>
-        <form id="contact-form" action="https://formspree.io/f/xabc1234" method="POST">
-            <input type="text" name="name" placeholder="Your Name" required>
-            <input type="email" name="email" placeholder="Your Email" required>
-            <textarea name="message" placeholder="Your Message" rows="6" required></textarea>
-            <button type="submit">Send Message</button>
-        </form>
-        <p style="text-align:center;margin-top:25px;">Email: <a href="mailto:founder.archon@gmail.com">founder.archon@gmail.com</a></p>
-    </section>
-
-    <section style="background:#f8f9fa;padding:100px 20px;text-align:center;">
-        <div class="whatsapp-cta-badge">
-            <a href="https://wa.me/918056394297?text=Hi!%20Send%20me%20a%20free%20website%20mockup%20">
-                Get Your FREE Website Mockup + Video Audit on WhatsApp<br>
-                <small style="font-size:1rem;">Instant reply • No commitment</small>
-            </a>
-        </div>
-    </section>
-
-    <footer>
-        <p>© 2025 Archon Tech – Website Development Company TamilNadu</p>
-        <div class="social-links">
-            <a href="https://instagram.com/archon_tech" target="_blank">Instagram</a> |
-            <a href="https://linkedin.com/company/archon-tech" target="_blank">LinkedIn</a> |
-            <a href="https://github.com/ArchonJAD" target="_blank">GitHub</a>
-        </div>
-    </footer>
-
-    <a href="https://wa.me/918056394297" class="wa-float">
-        <img src="w1.jpg" alt="WhatsApp Archon Tech – Website Development ">
+<!-- HERO -->
+<section id="home">
+  <div class="hero-glow glow-1"></div>
+  <div class="hero-glow glow-2"></div>
+  <div class="hero-badge">🚀 Tamil Nadu's Rising Web Agency</div>
+  <h1 class="hero-title">
+    We Build Websites That<br>
+    <span class="accent-teal">Convert</span> &
+    <span class="accent-purple">Grow</span> Your Business
+  </h1>
+  <p class="hero-sub">Custom-coded websites, e-commerce stores & digital marketing — designed to make your business stand out and win online.</p>
+  <div class="hero-actions">
+    <a href="https://wa.me/918056394297?text=Hi!%20I%20want%20a%20free%20website%20mockup" class="btn-primary" target="_blank">
+      💬 Get Free Mockup
     </a>
+    <a href="#portfolio" class="btn-secondary">View Our Work →</a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">Custom Coded</div></div>
+    <div class="stat-item"><div class="stat-num">Fast</div><div class="stat-label">Delivery Time</div></div>
+    <div class="stat-item"><div class="stat-num">∞</div><div class="stat-label">Revisions Until Perfect</div></div>
+    <div class="stat-item"><div class="stat-num">24/7</div><div class="stat-label">WhatsApp Support</div></div>
+  </div>
+</section>
 
-    <script>
-        document.querySelector('.hamburger').addEventListener('click',()=>{document.querySelector('.nav-links').classList.toggle('active')});
-        document.querySelectorAll('.nav-links a').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();document.querySelector(a.getAttribute('href')).scrollIntoView({behavior:'smooth'});document.querySelector('.nav-links').classList.remove('active')})});
-        const observer=new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting)en.target.classList.add('visible')})},{threshold:0.1});
-        document.querySelectorAll('.about-card,.service-card,.team-card').forEach(el=>observer.observe(el));
-    </script>
+<!-- ABOUT -->
+<section id="about">
+  <div class="reveal">
+    <p class="section-label">Who We Are</p>
+    <h2 class="section-title">Built by Creators Who Care About Your Growth</h2>
+    <p class="section-sub">Archon Tech is a Tamil Nadu-based web design & digital marketing agency. We combine clean code with creative design to build powerful online presences for businesses of all sizes.</p>
+  </div>
+  <div class="about-grid">
+    <div class="about-visual reveal">
+      <div class="about-card main">
+        <div style="font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;margin-bottom:1rem;">Why Archon Tech?</div>
+        <p style="color:var(--muted);font-size:0.9rem;line-height:1.7;">We don't use page builders or templates. Every site is handcrafted with HTML, CSS & JavaScript — making it faster, unique, and built exactly for your brand.</p>
+        <div style="margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid var(--border);display:flex;gap:2rem;">
+          <div><div class="big-num" style="font-size:2rem;">✦</div><div class="float-label">Custom Code</div></div>
+          <div><div class="big-num" style="font-size:2rem;">⚡</div><div class="float-label">Fast Load</div></div>
+          <div><div class="big-num" style="font-size:2rem;">📱</div><div class="float-label">Mobile First</div></div>
+        </div>
+      </div>
+      <div class="about-card float2">
+        <div class="big-num">4+</div>
+        <div class="float-label">Expert Team Members</div>
+      </div>
+      <div class="about-card float1">
+        <div class="big-num">🏆</div>
+        <div class="float-label">Quality Focused</div>
+      </div>
+    </div>
+    <div class="about-items reveal">
+      <div class="about-item">
+        <div class="about-icon t">🎨</div>
+        <div>
+          <h4>Custom Design, Not Templates</h4>
+          <p>Every website we build is unique. No Wix, no WordPress themes — pure hand-coded sites that load fast and look stunning.</p>
+        </div>
+      </div>
+      <div class="about-item">
+        <div class="about-icon p">📈</div>
+        <div>
+          <h4>Results-Driven Marketing</h4>
+          <p>From Google Ads to Instagram campaigns, we create digital marketing strategies that bring real customers to your door.</p>
+        </div>
+      </div>
+      <div class="about-item">
+        <div class="about-icon g">🤝</div>
+        <div>
+          <h4>Transparent & Honest</h4>
+          <p>We communicate clearly, deliver on time, and stick with you after launch. No hidden fees, no disappearing acts.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-header reveal">
+    <div>
+      <p class="section-label">What We Offer</p>
+      <h2 class="section-title">Services Built to Grow Your Business</h2>
+    </div>
+    <a href="#contact" class="btn-secondary">Get a Quote →</a>
+  </div>
+  <div class="services-grid">
+    <div class="service-card c1 reveal">
+      <div class="service-icon si1">🌐</div>
+      <h3>Website Development</h3>
+      <p>Fast, mobile-responsive, custom-coded websites built with HTML, CSS & JavaScript. No templates — every pixel is crafted for you.</p>
+      <span class="service-tag">Most Popular</span>
+    </div>
+    <div class="service-card c2 reveal">
+      <div class="service-icon si2">🛒</div>
+      <h3>E-Commerce Store</h3>
+      <p>Full-featured online stores with product pages, shopping cart, and payment gateway integration. Start selling in days.</p>
+      <span class="service-tag">High ROI</span>
+    </div>
+    <div class="service-card c3 reveal">
+      <div class="service-icon si3">📣</div>
+      <h3>Digital Marketing</h3>
+      <p>Google Ads, Instagram & Facebook campaigns managed to bring you leads, traffic, and sales — not just likes.</p>
+      <span class="service-tag">Results Driven</span>
+    </div>
+    <div class="service-card c4 reveal">
+      <div class="service-icon si4">🔍</div>
+      <h3>SEO Services</h3>
+      <p>Rank higher on Google and get found by customers searching for your business. Local & national SEO strategies.</p>
+      <span class="service-tag">Long Term</span>
+    </div>
+    <div class="service-card c5 reveal">
+      <div class="service-icon si5">🛠️</div>
+      <h3>Website Maintenance</h3>
+      <p>Monthly updates, security checks, content changes, and technical support so your site stays fresh and running smoothly.</p>
+      <span class="service-tag">Ongoing</span>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="reveal">
+    <p class="section-label">Our Work</p>
+    <h2 class="section-title">Projects We're Proud Of</h2>
+    <p class="section-sub">Take a look at some of our recent design work. Each project is uniquely crafted to match the brand and goals of the client.</p>
+  </div>
+  <div class="portfolio-grid">
+    <div class="portfolio-card reveal">
+      <div class="portfolio-thumb pt1">
+        <div class="mock-browser">
+          <div class="mock-bar"><div class="mock-dot d1"></div><div class="mock-dot d2"></div><div class="mock-dot d3"></div></div>
+          <div class="mock-content">
+            <div class="mock-line w80"></div>
+            <div class="mock-line w60"></div>
+            <div class="mock-rect"></div>
+            <div class="mock-line w90" style="margin-top:8px"></div>
+          </div>
+        </div>
+      </div>
+      <div class="portfolio-info">
+        <h3>Restaurant & Café Website</h3>
+        <p>Modern, visual-first design with online menu and table booking</p>
+        <div class="portfolio-tags">
+          <span class="ptag t">HTML/CSS</span><span class="ptag p">JS</span><span class="ptag g">Responsive</span>
+        </div>
+      </div>
+    </div>
+    <div class="portfolio-card reveal">
+      <div class="portfolio-thumb pt2">
+        <div class="mock-browser">
+          <div class="mock-bar"><div class="mock-dot d1"></div><div class="mock-dot d2"></div><div class="mock-dot d3"></div></div>
+          <div class="mock-content">
+            <div class="mock-line w60"></div>
+            <div class="mock-line w80"></div>
+            <div class="mock-rect" style="background:rgba(26,122,60,0.3)"></div>
+            <div class="mock-line w40" style="margin-top:8px"></div>
+          </div>
+        </div>
+      </div>
+      <div class="portfolio-info">
+        <h3>Fitness Studio Website</h3>
+        <p>Bold, high-energy design with class schedules and membership plans</p>
+        <div class="portfolio-tags">
+          <span class="ptag t">HTML/CSS</span><span class="ptag g">Animation</span><span class="ptag p">Mobile</span>
+        </div>
+      </div>
+    </div>
+    <div class="portfolio-card reveal">
+      <div class="portfolio-thumb pt3">
+        <div class="mock-browser">
+          <div class="mock-bar"><div class="mock-dot d1"></div><div class="mock-dot d2"></div><div class="mock-dot d3"></div></div>
+          <div class="mock-content">
+            <div class="mock-line w90"></div>
+            <div class="mock-line w60"></div>
+            <div class="mock-rect" style="background:rgba(91,45,142,0.3)"></div>
+            <div class="mock-line w80" style="margin-top:8px"></div>
+          </div>
+        </div>
+      </div>
+      <div class="portfolio-info">
+        <h3>Fashion Boutique Store</h3>
+        <p>Elegant e-commerce with product gallery and payment integration</p>
+        <div class="portfolio-tags">
+          <span class="ptag p">E-Commerce</span><span class="ptag t">JS</span><span class="ptag g">SEO</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="portfolio-notice reveal">
+    <strong>🚀 We're growing!</strong> More client projects coming soon. Want to be one of our first featured clients? <a href="https://wa.me/918056394297" target="_blank" style="color:var(--teal);text-decoration:none;font-weight:600;">Contact us on WhatsApp →</a>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="reveal" style="text-align:center;">
+    <p class="section-label">How It Works</p>
+    <h2 class="section-title" style="max-width:100%;text-align:center;">From Idea to Live Website in 4 Steps</h2>
+  </div>
+  <div class="process-steps">
+    <div class="process-step reveal">
+      <div class="step-num sn1">01</div>
+      <h4>Discovery Call</h4>
+      <p>We learn about your business, goals, and what you need. WhatsApp or call — your choice.</p>
+    </div>
+    <div class="process-step reveal">
+      <div class="step-num sn2">02</div>
+      <h4>Free Mockup</h4>
+      <p>We design a free preview of your website so you can see exactly what you're getting before paying.</p>
+    </div>
+    <div class="process-step reveal">
+      <div class="step-num sn3">03</div>
+      <h4>Development</h4>
+      <p>We build your site with clean code, animations, and mobile optimization. You review at every step.</p>
+    </div>
+    <div class="process-step reveal">
+      <div class="step-num sn4">04</div>
+      <h4>Launch & Support</h4>
+      <p>We go live and stay with you. Updates, fixes, and support — we don't disappear after launch.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+  <div class="reveal" style="text-align:center;">
+    <p class="section-label">Our Team</p>
+    <h2 class="section-title" style="max-width:100%;text-align:center;">The People Behind Archon Tech</h2>
+  </div>
+  <div class="team-grid">
+    <div class="team-card reveal">
+      <div class="team-avatar av1">AS</div>
+      <h3>Abinaya Sri</h3>
+      <p class="team-role">Founder</p>
+    </div>
+    <div class="team-card reveal">
+      <div class="team-avatar av2">JN</div>
+      <h3>Janaganandhini</h3>
+      <p class="team-role">Co-Founder</p>
+    </div>
+    <div class="team-card reveal">
+      <div class="team-avatar av3">VM</div>
+      <h3>Vel Murugan</h3>
+      <p class="team-role">Executive Officer</p>
+    </div>
+    <div class="team-card reveal">
+      <div class="team-avatar av4">AF</div>
+      <h3>Afna Fathima</h3>
+      <p class="team-role">Digital Marketer</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="reveal">
+    <p class="section-label">Get In Touch</p>
+    <h2 class="section-title">Let's Build Something Great Together</h2>
+  </div>
+  <div class="contact-wrapper">
+    <div class="contact-info reveal">
+      <h3>Ready to grow your business online?</h3>
+      <p>Reach out to us on WhatsApp for a free website mockup and consultation. No commitment, no pressure — just a conversation about what's possible for your business.</p>
+      <div class="contact-item">
+        <div class="contact-item-icon">📧</div>
+        <div class="contact-item-text">Email<br><a href="mailto:founder.archon@gmail.com">founder.archon@gmail.com</a></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-icon">💬</div>
+        <div class="contact-item-text">WhatsApp<br><a href="https://wa.me/918056394297" target="_blank">+91 80563 94297</a></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-icon">📍</div>
+        <div class="contact-item-text">Location<br>Tamil Nadu, India</div>
+      </div>
+      <a href="https://wa.me/918056394297?text=Hi!%20I%20want%20a%20free%20website%20mockup" target="_blank" class="btn-primary" style="margin-top:1.5rem;display:inline-flex;">
+        💬 Chat on WhatsApp
+      </a>
+    </div>
+    <div class="contact-form reveal">
+      <h3 style="font-family:'Syne',sans-serif;font-weight:700;font-size:1.2rem;margin-bottom:1.5rem;">Send us a Message</h3>
+      <div class="form-row">
+        <div class="form-group"><label>Your Name</label><input type="text" placeholder="John Doe" /></div>
+        <div class="form-group"><label>Phone Number</label><input type="tel" placeholder="+91 00000 00000" /></div>
+      </div>
+      <div class="form-group"><label>Email Address</label><input type="email" placeholder="you@example.com" /></div>
+      <div class="form-group">
+        <label>Service Needed</label>
+        <select>
+          <option value="">Select a service...</option>
+          <option>Website Development</option>
+          <option>E-Commerce Store</option>
+          <option>Digital Marketing</option>
+          <option>SEO Services</option>
+          <option>Website Maintenance</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Message</label><textarea placeholder="Tell us about your project..."></textarea></div>
+      <button class="submit-btn" onclick="handleSubmit()">Send Message →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#home" class="nav-logo">
+        <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="4" y="10" width="16" height="5" rx="2.5" fill="#00B4A6" transform="rotate(-45 4 10)" />
+          <path d="M10 22 L18 14 L26 22" stroke="#1A7A3C" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <rect x="22" y="12" width="14" height="5" rx="2.5" fill="#7B4DBE" transform="rotate(-90 22 12)"/>
+        </svg>
+        Archon Tech
+      </a>
+      <p>Tamil Nadu's growing web design & digital marketing agency. We build websites that work as hard as you do.</p>
+    </div>
+    <div class="footer-links">
+      <h4>Navigation</h4>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#team">Team</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#services">Website Development</a></li>
+        <li><a href="#services">E-Commerce Store</a></li>
+        <li><a href="#services">Digital Marketing</a></li>
+        <li><a href="#services">SEO Services</a></li>
+        <li><a href="#services">Maintenance</a></li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="mailto:founder.archon@gmail.com">founder.archon@gmail.com</a></li>
+        <li><a href="https://wa.me/918056394297" target="_blank">WhatsApp Us</a></li>
+        <li><a href="https://instagram.com/archon_tech" target="_blank">Instagram</a></li>
+        <li><a href="https://linkedin.com/company/archon-tech" target="_blank">LinkedIn</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Archon Tech. All rights reserved. Tamil Nadu, India.</p>
+    <div class="social-links">
+      <a href="https://instagram.com/archon_tech" target="_blank">IG</a>
+      <a href="https://linkedin.com/company/archon-tech" target="_blank">in</a>
+      <a href="https://github.com/ArchonJAD" target="_blank">GH</a>
+    </div>
+  </div>
+</footer>
+
+<!-- WhatsApp Float -->
+<a href="https://wa.me/918056394297" class="wa-float" target="_blank" title="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+  </svg>
+</a>
+
+<script>
+  // Mobile menu
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+
+  // Close menu on link click
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+  });
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Nav shrink on scroll
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').style.padding = window.scrollY > 50 ? '0.8rem 5%' : '1.2rem 5%';
+  });
+
+  // Form submit
+  function handleSubmit() {
+    const btn = document.querySelector('.submit-btn');
+    btn.textContent = '✓ Message Sent!';
+    btn.style.background = 'linear-gradient(135deg, #1A7A3C, #00B4A6)';
+    setTimeout(() => {
+      btn.textContent = 'Send Message →';
+      btn.style.background = '';
+    }, 3000);
+  }
+</script>
 </body>
 </html>
-
-
