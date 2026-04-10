@@ -57,6 +57,12 @@
   }
 
   .nav-logo svg { width: 36px; height: 36px; }
+  .nav-logo img {
+    height: 40px; width: auto;
+    border-radius: 8px;
+    mix-blend-mode: screen;
+    filter: brightness(1.1) contrast(1.1);
+  }
 
   .nav-links { display: flex; gap: 2.5rem; list-style: none; }
   .nav-links a {
@@ -195,15 +201,17 @@
     gap: 4rem; align-items: center; margin-top: 3rem;
   }
   .about-visual {
-    position: relative; height: 380px;
+    position: relative; display: flex; flex-direction: column; gap: 1rem;
   }
   .about-card {
-    position: absolute; background: var(--surface);
+    background: var(--surface);
     border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem;
   }
-  .about-card.main { inset: 0; display: flex; flex-direction: column; justify-content: center; }
-  .about-card.float1 { bottom: -20px; right: -20px; width: 180px; background: var(--surface2); }
-  .about-card.float2 { top: -20px; left: -20px; width: 160px; background: var(--surface2); }
+  .about-card.main { display: flex; flex-direction: column; justify-content: center; }
+  .about-card.float1 { background: var(--surface2); }
+  .about-card.float2 { background: var(--surface2); }
+  .about-floats { display: flex; gap: 1rem; }
+  .about-floats .about-card { flex: 1; }
 
   .big-num {
     font-family: 'Syne', sans-serif; font-size: 4rem; font-weight: 800;
@@ -481,11 +489,7 @@
 <!-- NAV -->
 <nav id="navbar">
   <a href="#home" class="nav-logo">
-    <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="4" y="10" width="16" height="5" rx="2.5" fill="#00B4A6" transform="rotate(-45 4 10)" />
-      <path d="M10 22 L18 14 L26 22" stroke="#1A7A3C" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-      <rect x="22" y="12" width="14" height="5" rx="2.5" fill="#7B4DBE" transform="rotate(-90 22 12)"/>
-    </svg>
+    <img src="logo13.png" alt="Archon Tech" />
     Archon Tech
   </a>
   <ul class="nav-links" id="navLinks">
@@ -544,13 +548,15 @@
           <div><div class="big-num" style="font-size:2rem;">📱</div><div class="float-label">Mobile First</div></div>
         </div>
       </div>
-      <div class="about-card float2">
-        <div class="big-num">4+</div>
-        <div class="float-label">Expert Team Members</div>
-      </div>
-      <div class="about-card float1">
-        <div class="big-num">🏆</div>
-        <div class="float-label">Quality Focused</div>
+      <div class="about-floats">
+        <div class="about-card float2">
+          <div class="big-num">4+</div>
+          <div class="float-label">Expert Team Members</div>
+        </div>
+        <div class="about-card float1">
+          <div class="big-num">🏆</div>
+          <div class="float-label">Quality Focused</div>
+        </div>
       </div>
     </div>
     <div class="about-items reveal">
@@ -768,7 +774,7 @@
       <p>Reach out to us on WhatsApp for a free website mockup and consultation. No commitment, no pressure — just a conversation about what's possible for your business.</p>
       <div class="contact-item">
         <div class="contact-item-icon">📧</div>
-        <div class="contact-item-text">Email<br><a href="mailto:founder.archon@gmail.com">founder.archon@gmail.com</a></div>
+        <div class="contact-item-text">Email<br><a href="/cdn-cgi/l/email-protection#40262f352e2425326e213223282f2e00272d21292c6e232f2d"><span class="__cf_email__" data-cfemail="bfd9d0cad1dbdacd91decddcd7d0d1ffd8d2ded6d391dcd0d2">[email&#160;protected]</span></a></div>
       </div>
       <div class="contact-item">
         <div class="contact-item-icon">💬</div>
@@ -811,11 +817,7 @@
   <div class="footer-top">
     <div class="footer-brand">
       <a href="#home" class="nav-logo">
-        <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="4" y="10" width="16" height="5" rx="2.5" fill="#00B4A6" transform="rotate(-45 4 10)" />
-          <path d="M10 22 L18 14 L26 22" stroke="#1A7A3C" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          <rect x="22" y="12" width="14" height="5" rx="2.5" fill="#7B4DBE" transform="rotate(-90 22 12)"/>
-        </svg>
+        <img src="logo13.png" alt="Archon Tech" />
         Archon Tech
       </a>
       <p>Tamil Nadu's growing web design & digital marketing agency. We build websites that work as hard as you do.</p>
@@ -843,7 +845,7 @@
     <div class="footer-links">
       <h4>Contact</h4>
       <ul>
-        <li><a href="mailto:founder.archon@gmail.com">founder.archon@gmail.com</a></li>
+        <li><a href="/cdn-cgi/l/email-protection#3c5a53495258594e125d4e5f5453527c5b515d5550125f5351"><span class="__cf_email__" data-cfemail="e1878e948f858493cf809382898e8fa1868c80888dcf828e8c">[email&#160;protected]</span></a></li>
         <li><a href="https://wa.me/918056394297" target="_blank">WhatsApp Us</a></li>
         <li><a href="https://instagram.com/archon_tech" target="_blank">Instagram</a></li>
         <li><a href="https://linkedin.com/company/archon-tech" target="_blank">LinkedIn</a></li>
@@ -867,7 +869,7 @@
   </svg>
 </a>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // Mobile menu
   function toggleMenu() {
     document.getElementById('navLinks').classList.toggle('open');
@@ -886,19 +888,4 @@
 
   // Nav shrink on scroll
   window.addEventListener('scroll', () => {
-    document.getElementById('navbar').style.padding = window.scrollY > 50 ? '0.8rem 5%' : '1.2rem 5%';
-  });
-
-  // Form submit
-  function handleSubmit() {
-    const btn = document.querySelector('.submit-btn');
-    btn.textContent = '✓ Message Sent!';
-    btn.style.background = 'linear-gradient(135deg, #1A7A3C, #00B4A6)';
-    setTimeout(() => {
-      btn.textContent = 'Send Message →';
-      btn.style.background = '';
-    }, 3000);
-  }
-</script>
-</body>
-</html>
+    document.getElementById('navbar').style.padding = window.scrollY >
