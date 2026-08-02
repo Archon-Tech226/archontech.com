@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Contact — Archon Tech</title>
+<title>Team — Archon Tech</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="styles.css" />
 </head>
@@ -20,8 +20,8 @@
       <li><a href="about.html">About</a></li>
       <li><a href="services.html">Services</a></li>
       <li><a href="portfolio.html">Portfolio</a></li>
-      <li><a href="team.html">Team</a></li>
-      <li><a href="contact.html" class="active">Contact</a></li>
+      <li><a href="team.html" class="active">Team</a></li>
+      <li><a href="contact.html">Contact</a></li>
     </ul>
     <a href="contact.html" class="nav-cta">Get a Quote</a>
     <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
@@ -31,76 +31,43 @@
 </header>
 
 <section class="page-hero wrap">
-  <p class="eyebrow">Get In Touch</p>
-  <h1 class="section-title">Let's Build Something Great Together</h1>
+  <p class="eyebrow">Our Team</p>
+  <h1 class="section-title">The People Behind Archon Tech</h1>
+  <p class="section-sub">A small team handling design, development, and marketing for every project we take on.</p>
 </section>
 
 <section class="wrap">
-  <div class="contact-wrapper">
-    <div>
-      <h3 style="font-family:var(--display);font-weight:700;font-size:1.3rem;color:var(--navy);margin-bottom:1rem;">Ready to grow your business online?</h3>
-      <p style="color:var(--muted);font-size:0.95rem;line-height:1.7;margin-bottom:2rem;">Reach out for a free website mockup and consultation. No commitment, no pressure — just a conversation about what's possible for your business.</p>
-
-      <div class="contact-item">
-        <div class="contact-item-icon"><svg viewBox="0 0 24 24"><path d="M3 5h18v14H3z"/><path d="M3 6l9 7 9-7"/></svg></div>
-        <div class="contact-item-text">
-          <div class="contact-item-label">Email</div>
-          <a href="mailto:founder.archon@gmail.com">founder.archon@gmail.com</a>
-        </div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-item-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H8l-4 4V5a2 2 0 012-2h13a2 2 0 012 2z"/></svg></div>
-        <div class="contact-item-text">
-          <div class="contact-item-label">WhatsApp</div>
-          <a href="https://wa.me/918056394297" target="_blank" rel="noopener">+91 80563 94297</a>
-        </div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-item-icon"><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11a7 7 0 0114 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
-        <div class="contact-item-text">
-          <div class="contact-item-label">Location</div>
-          <span>Tamil Nadu, India</span>
-        </div>
-      </div>
-
-      <a href="https://wa.me/918056394297" target="_blank" rel="noopener" class="btn-primary" style="margin-top:1.5rem;">Chat on WhatsApp</a>
+  <div class="grid-4">
+    <div class="team-card">
+      <div class="team-avatar">AS</div>
+      <h3 style="font-family:var(--display);font-weight:700;font-size:1.05rem;color:var(--navy);">Abinaya Sri</h3>
+      <p class="team-role">Founder</p>
     </div>
+    <div class="team-card">
+      <div class="team-avatar">JN</div>
+      <h3 style="font-family:var(--display);font-weight:700;font-size:1.05rem;color:var(--navy);">Janaganandhini</h3>
+      <p class="team-role">Co-Founder</p>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar">VM</div>
+      <h3 style="font-family:var(--display);font-weight:700;font-size:1.05rem;color:var(--navy);">Vel Murugan</h3>
+      <p class="team-role">Executive Officer</p>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar">AF</div>
+      <h3 style="font-family:var(--display);font-weight:700;font-size:1.05rem;color:var(--navy);">Afna Fathima</h3>
+      <p class="team-role">Digital Marketer</p>
+    </div>
+  </div>
+</section>
 
-    <form class="contact-form" id="contactForm">
-      <h3 style="font-family:var(--display);font-weight:700;font-size:1.15rem;margin-bottom:1.4rem;color:var(--navy);">Send Us a Message</h3>
-      <div class="form-row">
-        <div class="form-group">
-          <label for="cf-name">Your Name</label>
-          <input type="text" id="cf-name" name="name" placeholder="John Doe" required />
-        </div>
-        <div class="form-group">
-          <label for="cf-phone">Phone Number</label>
-          <input type="tel" id="cf-phone" name="phone" placeholder="+91 00000 00000" required />
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="cf-email">Email Address</label>
-        <input type="email" id="cf-email" name="email" placeholder="you@example.com" />
-      </div>
-      <div class="form-group">
-        <label for="cf-service">Service Needed</label>
-        <select id="cf-service" name="service">
-          <option value="">Select a service...</option>
-          <option>Website Development</option>
-          <option>E-Commerce Store</option>
-          <option>Digital Marketing</option>
-          <option>SEO Services</option>
-          <option>Website Maintenance</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="cf-message">Message</label>
-        <textarea id="cf-message" name="message" placeholder="Tell us about your project..." required></textarea>
-      </div>
-      <button type="submit" class="submit-btn">Send Message →</button>
-      <p id="formStatus"></p>
-      <p class="form-note">Sending opens WhatsApp with your details pre-filled so we can reply quickly.</p>
-    </form>
+<section class="wrap">
+  <div class="cta-band">
+    <div>
+      <h3>Want to work with us?</h3>
+      <p>Reach out and we'll walk you through how we can help.</p>
+    </div>
+    <a href="contact.html" class="btn-primary">Contact the Team</a>
   </div>
 </section>
 
