@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Behind the Build | Archon Tech</title>
+  <meta name="description" content="Short notes from the Archon Tech team about what we're building and thinking about.">
+  <meta name="theme-color" content="#f7f8fc">
+  <link rel="icon" href="logo13.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;600;700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap bar">
+      <a class="brand" href="index.html">
+        <img src="logo13.png" alt="">
+        <span>Archon Tech</span>
+      </a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav id="site-nav" class="nav" aria-label="Main">
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="about.html">About</a>
+        <a href="team.html">Team</a>
+        <a href="contact.html">Contact</a>
+        <a class="btn btn--small" href="contact.html">Start a project</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-hero">
+      <div class="wrap">
+        <span class="eyebrow-line" aria-hidden="true"></span>
+        <h1>Behind the Build</h1>
+        <p class="lede">Short notes from the team about what we're working on and thinking about, day to day.</p>
+      </div>
+    </section>
+
+    <section class="section--tight">
+      <div class="wrap">
+
+        <div class="auth-bar">
+          <span class="who" id="auth-status">&nbsp;</span>
+          <a href="#" class="btn btn--ghost btn--small" id="signin-toggle">Team sign in</a>
+          <button class="btn btn--small" id="signout-btn" type="button" hidden>Sign out</button>
+        </div>
+
+        <div class="auth-panel" id="auth-panel" hidden>
+          <form id="signin-form">
+            <div class="field">
+              <label for="auth-email">Email</label>
+              <input type="email" id="auth-email" name="email" autocomplete="username" required>
+            </div>
+            <div class="field">
+              <label for="auth-password">Password</label>
+              <input type="password" id="auth-password" name="password" autocomplete="current-password" required>
+            </div>
+            <button class="btn btn--small" type="submit">Sign in</button>
+            <p class="form-status" id="auth-error" role="status"></p>
+          </form>
+        </div>
+
+        <div class="composer" id="composer" hidden>
+          <div class="field">
+            <label for="post-body">Share a thought</label>
+            <textarea id="post-body" maxlength="600" placeholder="What are you building or thinking about today?"></textarea>
+          </div>
+          <div class="composer-foot">
+            <span class="char-count" id="char-count">0 / 600</span>
+            <button class="btn btn--small" id="post-btn" type="button">Post</button>
+          </div>
+          <p class="form-status" id="post-status" role="status"></p>
+        </div>
+
+        <div class="post-list" id="post-list" data-limit="30">
+          <p class="load-note">Loading notes&hellip;</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div>
+          <a class="brand" href="index.html">
+            <img src="logo13.png" alt="">
+            <span>Archon Tech</span>
+          </a>
+          <p style="margin-top:0.85rem;max-width:22rem">Websites, web applications and social media marketing, delivered by a remote team.</p>
+        </div>
+        <div>
+          <h2>Pages</h2>
+          <ul>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="team.html">Team</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="blog.html">Behind the Build</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Get in touch</h2>
+          <ul>
+            <li><a href="mailto:founder.archon@gmail.com">founder.archon@gmail.com</a></li>
+            <li><a href="tel:+918056394297">+91 80563 94297</a></li>
+            <li><a href="https://www.linkedin.com/company/114164118" rel="noopener" target="_blank">LinkedIn</a></li>
+            <li><a href="https://www.instagram.com/archon_tech" rel="noopener" target="_blank">Instagram</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="footer-note">&copy; <span id="year">2026</span> Archon Tech. We work remotely with clients everywhere.</p>
+    </div>
+  </footer>
+
+  <script type="module" src="firebase-config.js"></script>
+  <script type="module" src="blog-page.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>

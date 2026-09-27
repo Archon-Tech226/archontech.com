@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About | Archon Tech</title>
+  <meta name="description" content="Archon Tech is a remote team building websites, web applications and social media presence for growing businesses.">
+  <meta name="theme-color" content="#f7f8fc">
+  <link rel="icon" href="logo13.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;600;700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap bar">
+      <a class="brand" href="index.html">
+        <img src="logo13.png" alt="">
+        <span>Archon Tech</span>
+      </a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav id="site-nav" class="nav" aria-label="Main">
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="about.html" aria-current="page">About</a>
+        <a href="team.html">Team</a>
+        <a href="contact.html">Contact</a>
+        <a class="btn btn--small" href="contact.html">Start a project</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-hero">
+      <div class="wrap">
+        <span class="eyebrow-line" aria-hidden="true"></span>
+        <h1>A small, remote team that builds things properly.</h1>
+      </div>
+    </section>
+
+    <section class="section--tight section--rule">
+      <div class="wrap about-grid">
+        <div>
+          <p class="lede">Archon Tech started as a way to give small and growing businesses the kind of website and web application usually reserved for companies with much bigger budgets.</p>
+          <p>We work as a small, remote team, which keeps us close to every project instead of spreading thin across too many clients at once. Each site or application is built around what the business actually needs, not a template stretched to fit.</p>
+          <p>Alongside development, we manage social media for clients who want their online presence to feel as considered as their website does.</p>
+        </div>
+        <ul class="values">
+          <li>
+            <h3>Built around the business</h3>
+            <p>We start by understanding how you work, then design and build around that, not the other way round.</p>
+          </li>
+          <li>
+            <h3>Clear communication</h3>
+            <p>You see progress as we build, not just a finished product at the end.</p>
+          </li>
+          <li>
+            <h3>Support after launch</h3>
+            <p>A project isn't done the day it goes live. We stay available for fixes and updates.</p>
+          </li>
+        </ul>
+      </div>
+
+      <div class="wrap">
+        <div class="founder-note">
+          <img src="founder.png" alt="Abinaya Sri, Founder of Archon Tech">
+          <div>
+            <p>"I started Archon Tech to help small businesses get a professional online presence without the agency price tag. Every project we take on, we build like it's our own."</p>
+            <p class="name">Abinaya Sri</p>
+            <p class="role">Founder, Archon Tech</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section--tight">
+      <div class="wrap">
+        <div class="cta">
+          <div>
+            <h2>Want to work with us?</h2>
+            <p>Tell us about your business and what you're trying to build.</p>
+          </div>
+          <a class="btn btn--light" href="contact.html">Start a project</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div>
+          <a class="brand" href="index.html">
+            <img src="logo13.png" alt="">
+            <span>Archon Tech</span>
+          </a>
+          <p style="margin-top:0.85rem;max-width:22rem">Websites, web applications and social media marketing, delivered by a remote team.</p>
+        </div>
+        <div>
+          <h2>Pages</h2>
+          <ul>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="team.html">Team</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="blog.html">Behind the Build</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Get in touch</h2>
+          <ul>
+            <li><a href="mailto:founder.archon@gmail.com">founder.archon@gmail.com</a></li>
+            <li><a href="tel:+918056394297">+91 80563 94297</a></li>
+            <li><a href="https://www.linkedin.com/company/114164118" rel="noopener" target="_blank">LinkedIn</a></li>
+            <li><a href="https://www.instagram.com/archon_tech" rel="noopener" target="_blank">Instagram</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-widget">
+        <h2 style="margin-bottom:0.9rem">Behind the Build</h2>
+        <div class="post-list" id="footer-posts" data-limit="2">
+          <p class="load-note">Loading recent notes&hellip;</p>
+        </div>
+        <a class="more-link" href="blog.html">Read more on Behind the Build</a>
+      </div>
+
+      <p class="footer-note">&copy; <span id="year">2026</span> Archon Tech. We work remotely with clients everywhere.</p>
+    </div>
+  </footer>
+
+  <script type="module" src="firebase-config.js"></script>
+  <script type="module" src="blog-widget.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
