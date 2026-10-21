@@ -1,0 +1,59 @@
+{% extends "dashboard/base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block page_title %}Dashboard{% endblock %}
+{% block content %}
+  <div class="quick-actions">
+    <a class="btn btn--small" href="{% url 'dashboard:leads_list' %}">Leads</a>
+    <a class="btn btn--small" href="{% url 'dashboard:blog_add' %}">Write a post</a>
+    <a class="btn btn--small" href="{% url 'dashboard:portfolio_add' %}">Add project</a>
+    <a class="btn btn--ghost btn--small" href="{% url 'dashboard:testimonial_list' %}">Testimonials ({{ testimonial_count }} live)</a>
+  </div>
+  {% if followups_due %}<p class="dash-note warn" role="status"><a href="{% url 'dashboard:leads_list' %}?followup=1">{{ followups_due }} lead{{ followups_due|pluralize }} due for follow-up</a></p>{% endif %}
+  {% if sample_testimonial_count %}<p class="dash-note">{{ sample_testimonial_count }} sample testimonial{{ sample_testimonial_count|pluralize }} exist. They are hidden on the live site.</p>{% endif %}
+  <div class="stat-grid">
+    <div class="stat-card accent">
+      <span class="num">{{ lead_count }}</span>
+      <span class="label">Total leads</span>
+    </div>
+    <div class="stat-card">
+      <span class="num">{{ new_lead_count }}</span>
+      <span class="label">New, unreviewed</span>
+    </div>
+    <div class="stat-card">
+      <span class="num">{{ lead_count_week }}</span>
+      <span class="label">Leads this week</span>
+    </div>
+    <div class="stat-card">
+      <span class="num">{{ post_count }}</span>
+      <span class="label">Published posts{% if draft_count %} &middot; {{ draft_count }} draft{{ draft_count|pluralize }}{% endif %}</span>
+    </div>
+  </div>
+
+  <div class="dash-grid-2">
+    <div class="panel">
+      <h2>Recent leads</h2>
+      {% for lead in recent_leads %}
+        <a href="{% url 'dashboard:lead_detail' lead.pk %}" class="panel-row" style="text-decoration:none;color:inherit">
+          <span>{{ lead.name }}<br><span class="muted">{{ lead.service|default:"\u2014" }}</span></span>
+          <span class="status-badge status-{{ lead.status }}">{{ lead.get_status_display }}</span>
+        </a>
+      {% empty %}
+        <p class="muted" style="color:var(--muted)">No leads yet.</p>
+      {% endfor %}
+      <p style="margin-top:1rem"><a href="{% url 'dashboard:leads_list' %}">View all leads &rarr;</a></p>
+    </div>
+
+    <div class="panel">
+      <h2>Recent posts</h2>
+      {% for post in recent_posts %}
+        <div class="panel-row">
+          <span>{{ post.author_name }}<br><span class="muted">{% if post.title %}{{ post.title|truncatechars:40 }}{% else %}{{ post.body|truncatechars:40 }}{% endif %}</span></span>
+          <span class="status-badge status-{{ post.status }}">{{ post.get_status_display }}</span>
+        </div>
+      {% empty %}
+        <p style="color:var(--muted)">No posts yet.</p>
+      {% endfor %}
+      <p style="margin-top:1rem"><a href="{% url 'dashboard:blog_list' %}">Manage posts &rarr;</a></p>
+    </div>
+  </div>
+{% endblock %}

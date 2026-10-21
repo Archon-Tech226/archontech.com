@@ -1,0 +1,42 @@
+{% extends "site_app/base.html" %}
+{% load archon %}
+{% block title %}{{ post.title|default:"Note" }} | Behind the Build | Archon Tech{% endblock %}
+{% block description %}{{ post.excerpt|default:post.body|truncatechars:155 }}{% endblock %}
+{% block og_title %}{{ post.title|default:"Behind the Build" }}{% endblock %}
+{% block content %}
+    <section class="section--tight">
+      <div class="wrap">
+        <article class="article">
+          <a class="back-link" href="{% url 'blog' %}">&larr; All articles</a>
+          {% if post.status != 'published' %}<p class="form-banner" role="status">Draft preview: not visible to the public.</p>{% endif %}
+          <p class="meta">{% if post.category %}<span class="cat">{{ post.category }}</span> &middot; {% endif %}{{ post.author_name }} &middot; {{ post.created_at|date:"j M Y" }}</p>
+          <h1 style="font-size:var(--text-2xl);margin-top:0.5rem;max-width:none">{{ post.title|default:"Note" }}</h1>
+          {% if post.is_article %}<img class="cover" src="{{ post|cover_url }}" alt="" width="800" height="450" fetchpriority="high">{% endif %}
+          {{ post.body|article_body }}
+
+          <div class="cta article-cta">
+            <div>
+              <h2 style="margin-top:0">{{ cta.cta_label|default:"Talk to Archon Tech" }}</h2>
+              <p>Tell us about your project and we'll suggest a sensible starting point.</p>
+            </div>
+            <a class="btn btn--light" href="{% url 'contact' %}{% if cta %}?service={{ cta.cta_service|urlencode }}{% endif %}">Get in touch</a>
+          </div>
+        </article>
+
+        {% if related %}
+        <h2 style="margin-top:3rem;font-size:var(--text-xl)">More from Behind the Build</h2>
+        <div class="article-grid" style="margin-top:1.25rem">
+          {% for r in related %}
+            <article class="article-card">
+              <img class="cover" src="{{ r|cover_url }}" alt="" width="800" height="450" loading="lazy">
+              <div class="inner">
+                <p class="meta">{{ r.category }}</p>
+                <h3><a href="{{ r.get_absolute_url }}">{{ r.title }}</a></h3>
+              </div>
+            </article>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+    </section>
+{% endblock %}

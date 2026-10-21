@@ -1,0 +1,83 @@
+{% extends "site_app/base.html" %}
+{% block title %}Contact | Archon Tech{% endblock %}
+{% block description %}Start a project with Archon Tech. Email founder.archon@gmail.com or send a message using the form.{% endblock %}
+{% block content %}
+    <section class="page-hero">
+      <div class="wrap">
+        <span class="eyebrow-line" aria-hidden="true"></span>
+        <h1>Tell us what you need built.</h1>
+        <p class="lede">Send a message and we'll reply personally.</p>
+        <ol class="next-steps" style="margin-top:1rem"><li>You send the form below.</li><li>We read it and reply to your email.</li><li>We talk through your project before anything is agreed.</li></ol>
+      </div>
+    </section>
+
+    <section class="section--tight">
+      <div class="wrap contact-grid">
+        <form method="post" aria-describedby="form-note">
+          {% csrf_token %}
+          {% if form.errors %}
+            <div class="form-banner" role="alert">Please fix the highlighted fields and send again. Your message has not been sent yet.</div>
+          {% endif %}
+          <div class="field">
+            <label for="{{ form.name.id_for_label }}">Name<span class="req" aria-hidden="true">*</span></label>
+            {{ form.name }}
+            {{ form.name.errors }}
+          </div>
+          <div class="field">
+            <label for="{{ form.email.id_for_label }}">Email<span class="req" aria-hidden="true">*</span></label>
+            {{ form.email }}
+            {{ form.email.errors }}
+          </div>
+          <div class="field">
+            <label for="{{ form.phone.id_for_label }}">Phone (optional)</label>
+            {{ form.phone }}
+            {{ form.phone.errors }}
+          </div>
+          <div class="field">
+            <label for="{{ form.service.id_for_label }}">What do you need?<span class="req" aria-hidden="true">*</span></label>
+            {{ form.service }}
+            {{ form.service.errors }}
+          </div>
+          <div class="field">
+            <label for="{{ form.message.id_for_label }}">Message<span class="req" aria-hidden="true">*</span></label>
+            {{ form.message }}
+            {{ form.message.errors }}
+          </div>
+          <div class="hp-field" aria-hidden="true">
+            {{ form.company_website.label_tag }}
+            {{ form.company_website }}
+          </div>
+          <p class="form-note" id="form-note"><span class="req" aria-hidden="true">*</span> Required. We read every message and reply to the email you give us. We don't share your details with anyone else.</p>
+          <button class="btn" type="submit">Send message</button>
+          {% for message in messages %}
+            <p class="form-status" data-state="ok" role="status">{{ message }}</p>
+          {% endfor %}
+        </form>
+
+        <div>
+          <ul class="contact-info">
+            <li>
+              <p class="label">Email</p>
+              <p class="value"><a href="mailto:founder.archon@gmail.com">founder.archon@gmail.com</a></p>
+            </li>
+            <li>
+              <p class="label">Phone</p>
+              <p class="value"><a href="tel:+918056394297">+91 80563 94297</a></p>
+            </li>
+            <li>
+              <p class="label">Where we work</p>
+              <p class="value">Remote-first — we work with clients anywhere</p>
+            </li>
+            <li>
+              <p class="label">Follow along</p>
+              <p class="value">
+                <a href="https://www.linkedin.com/company/114164118" rel="noopener" target="_blank">LinkedIn</a>
+                &nbsp;&middot;&nbsp;
+                <a href="https://www.instagram.com/archon_tech" rel="noopener" target="_blank">Instagram</a>
+              </p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+{% endblock %}

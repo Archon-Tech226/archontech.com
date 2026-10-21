@@ -1,0 +1,39 @@
+{% extends "dashboard/base.html" %}
+{% block title %}{% if item %}Edit testimonial{% else %}Add testimonial{% endif %}{% endblock %}
+{% block page_title %}{% if item %}Edit testimonial{% else %}Add testimonial{% endif %}{% endblock %}
+{% block content %}
+  <div class="dash-form-wrap">
+    <form method="post">
+      {% csrf_token %}
+      <div class="field">
+        <label for="id_client_name">Client name</label>
+        {{ form.client_name }}
+      </div>
+      <div class="field">
+        <label for="id_company">Company (optional)</label>
+        {{ form.company }}
+      </div>
+      <div class="field">
+        <label for="id_quote">Quote</label>
+        {{ form.quote }}
+      </div>
+      <div class="field">
+        <label for="id_rating">Rating</label>
+        {{ form.rating }}
+      </div>
+      <div class="checkbox-field">
+        {{ form.is_published }}
+        <label for="id_is_published">Visible on the site</label>
+      </div>
+      <div class="checkbox-field">
+        {{ form.is_sample }}
+        <label for="id_is_sample">This is a sample / placeholder (never shown on the live site)</label>
+      </div>
+      <p class="dash-note warn">Only add a testimonial for a real client who has approved it. To replace a sample, untick "sample" and enter the approved quote and name.</p>
+      <div class="dash-form-actions">
+        <button class="btn" type="submit">Save</button>
+        <a href="{% url 'dashboard:testimonial_list' %}" style="color:var(--muted)">Cancel</a>
+      </div>
+    </form>
+  </div>
+{% endblock %}

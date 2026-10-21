@@ -1,0 +1,171 @@
+{% extends "site_app/base.html" %}
+{% load static archon %}
+{% block content %}
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <h1>Websites, social media, web apps and SaaS products for growing businesses.</h1>
+          <p class="lede">Archon Tech is a remote team. We build the sites and tools your business runs on, and plan the social content that brings people to them.</p>
+          <div class="hero-actions">
+            <a class="btn" href="{% url 'contact' %}">Start a project</a>
+            <a class="btn btn--ghost" href="{% url 'portfolio' %}">See our work</a>
+          </div>
+        </div>
+        <div class="hero-shot">
+          {% with hero=projects.0 %}
+          <div class="shot-frame">
+            <div class="shot-bar" aria-hidden="true"><i></i><i></i><i></i></div>
+            {% if hero and hero.image %}
+              <img src="{{ hero.image.url }}" alt="Screenshot of {{ hero.title }}" width="1200" height="750" fetchpriority="high">
+            {% else %}
+              <div class="thumb-fallback">Project screenshot</div>
+            {% endif %}
+          </div>
+          {% if hero %}<p class="shot-caption">{{ hero.title }}{% if hero.project_type %} &middot; {{ hero.get_project_type_display }}{% endif %}</p>{% endif %}
+          {% endwith %}
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--rule" aria-labelledby="work-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="work-title">Selected work</h2>
+          <p>A look at what we have built.</p>
+        </div>
+        <div class="work-list">
+          {% for p in projects %}
+            <article class="work-row">
+              {% if p.image %}
+                <img class="thumb" src="{{ p.image.url }}" alt="Screenshot of {{ p.title }}" width="1200" height="750" loading="lazy">
+              {% else %}
+                <span class="thumb-fallback" aria-hidden="true">No image yet</span>
+              {% endif %}
+              <div>
+                <h3>{{ p.title }}</h3>
+                <p>{{ p.description }}</p>
+              </div>
+              <span class="tag">{% if p.project_type %}{{ p.get_project_type_display }}{% else %}{{ p.get_category_display }}{% endif %}</span>
+            </article>
+          {% empty %}
+            <p class="empty-box">Projects will appear here once they are published from the dashboard.</p>
+          {% endfor %}
+        </div>
+        <a class="more-link" href="{% url 'portfolio' %}">View the full portfolio</a>
+      </div>
+    </section>
+
+    <section class="section section--rule" aria-labelledby="services-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="services-title">What we do</h2>
+          <p>Four services, handled by one team, so your site, your tools, your product and your social media work together.</p>
+        </div>
+        <div class="svc-grid">
+          {% for svc in services %}
+          <article class="svc-card">
+            <span class="num" aria-hidden="true">{{ svc.num }}</span>
+            <h3>{{ svc.name }}</h3>
+            <p>{{ svc.summary }}</p>
+            <div class="tag-row">{% for t in svc.tags|slice:":3" %}<span class="tag">{{ t }}</span>{% endfor %}</div>
+            <a class="card-link" href="{% url 'services' %}#{{ svc.slug }}">Learn more<span class="sr-only"> about {{ svc.name }}</span> &rarr;</a>
+          </article>
+          {% endfor %}
+        </div>
+        <div class="stack-badges" aria-label="Technologies we build with">
+          <span class="stack-badge"><span class="dot"></span>Python</span>
+          <span class="stack-badge"><span class="dot"></span>Django</span>
+          <span class="stack-badge"><span class="dot"></span>JavaScript</span>
+          <span class="stack-badge"><span class="dot"></span>React</span>
+          <span class="stack-badge"><span class="dot"></span>MySQL</span>
+          <span class="stack-badge"><span class="dot"></span>MongoDB</span>
+          <span class="stack-badge"><span class="dot"></span>AI &amp; ML</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--rule" aria-labelledby="process-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="process-title">How a project runs</h2>
+          <p>A simple four-step process, with you involved at every stage.</p>
+        </div>
+        <ol class="steps">
+          {% for title, text in process_steps %}
+          <li>
+            <h3>{{ title }}</h3>
+            <p>{{ text }}</p>
+          </li>
+          {% endfor %}
+        </ol>
+      </div>
+    </section>
+
+    <section class="section--tight section--rule">
+      <div class="wrap">
+        <div class="trust-bar">
+          <div class="trust-item">
+            <h3>You talk to the builders</h3>
+            <p>No account managers in between. You work directly with the people building it.</p>
+          </div>
+          <div class="trust-item">
+            <h3>Agree scope first</h3>
+            <p>We discuss your project and agree what is included before work starts.</p>
+          </div>
+          <div class="trust-item">
+            <h3>Support after launch</h3>
+            <p>We stay available for fixes and updates, with details agreed up front.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {% if testimonials %}
+    <section class="section section--rule" aria-labelledby="testimonials-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="testimonials-title">What clients say</h2>
+        </div>
+        <div class="t-grid">
+          {% for t in testimonials %}
+            <article class="t-card{% if t.is_sample %} t-card--sample{% endif %}">
+              {% if t.is_sample %}<span class="sample-flag">SAMPLE, DEVELOPMENT ONLY</span>{% endif %}
+              {% if t.rating and not t.is_sample %}<div class="t-stars" aria-label="{{ t.rating }} out of 5">{{ t.stars }}</div>{% endif %}
+              <p class="t-quote">&ldquo;{{ t.quote }}&rdquo;</p>
+              <div class="t-who">
+                <span class="avatar" aria-hidden="true">{{ t.client_name|initials }}</span>
+                <div>
+                  <span class="t-name">{{ t.client_name }}</span>
+                  {% if t.company %}<span class="t-company">{{ t.company }}</span>{% endif %}
+                </div>
+              </div>
+            </article>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+    {% endif %}
+
+    <section class="section section--rule" aria-labelledby="home-faq-title">
+      <div class="wrap">
+        <div class="section-head"><h2 id="home-faq-title">Quick answers</h2></div>
+        <div class="faq">
+          <details class="faq-item"><summary>Which service should I start with?</summary><p>Most businesses start with a website. If you mainly need visibility, start with social media. If a manual process is slowing you down, a web application may fit better. <a href="{% url 'contact' %}?service=Not%20sure%20yet">Tell us what you need</a> and we'll suggest a starting point.</p></details>
+          <details class="faq-item"><summary>Do you work with clients outside India?</summary><p>Yes. We are remote-first and work with clients anywhere.</p></details>
+          <details class="faq-item"><summary>What is the difference between a web app and SaaS?</summary><p>A web application supports workflows for one business. A SaaS product serves many separate customers. <a href="{% url 'blog_post' 'website-vs-web-application-vs-saas' %}">Read the full comparison</a>.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section--tight">
+      <div class="wrap">
+        <div class="cta">
+          <div>
+            <h2>Tell us what you need built.</h2>
+            <p>Send a short message about your project. You can also write to us at <a href="mailto:founder.archon@gmail.com">founder.archon@gmail.com</a>.</p>
+          </div>
+          <a class="btn btn--light" href="{% url 'contact' %}">Start a project</a>
+        </div>
+      </div>
+    </section>
+{% endblock %}

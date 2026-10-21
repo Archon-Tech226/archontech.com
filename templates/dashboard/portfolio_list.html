@@ -1,0 +1,30 @@
+{% extends "dashboard/base.html" %}
+{% block title %}Portfolio{% endblock %}
+{% block page_title %}Portfolio{% endblock %}
+{% block topbar_actions %}<a class="btn btn--small" href="{% url 'dashboard:portfolio_add' %}">Add project</a>{% endblock %}
+{% block content %}
+  <div class="dash-table-wrap">
+    <table class="dash-table">
+      <thead><tr><th>Preview</th><th>Title</th><th>Type</th><th>Live link</th><th>Visible</th><th></th></tr></thead>
+      <tbody>
+        {% for item in items %}
+          <tr>
+            <td>{% if item.image %}<img class="thumb-sm" src="{{ item.image.url }}" alt="">{% else %}<span class="thumb-sm"></span>{% endif %}</td>
+            <td>{{ item.title }}<br><span style="color:var(--muted);font-size:0.84rem">{{ item.get_category_display }}</span></td>
+            <td>{% if item.project_type %}{{ item.get_project_type_display }}{% else %}<span style="color:var(--muted)">Not labelled</span>{% endif %}</td>
+            <td>{% if item.live_url %}<a href="{{ item.live_url }}" target="_blank" rel="noopener">Visit &rarr;</a>{% else %}<span style="color:var(--muted)">Not yet</span>{% endif %}</td>
+            <td><span class="status-badge {% if item.is_published %}status-published{% else %}status-draft{% endif %}">{% if item.is_published %}Visible{% else %}Hidden{% endif %}</span></td>
+            <td class="actions">
+              <a href="{% url 'dashboard:portfolio_edit' item.pk %}">Edit</a>
+              <form method="post" action="{% url 'dashboard:portfolio_delete' item.pk %}" onsubmit="return confirm('Delete this project?')">
+                {% csrf_token %}<button type="submit" class="danger">Delete</button>
+              </form>
+            </td>
+          </tr>
+        {% empty %}
+          <tr class="empty-row"><td colspan="6">No projects yet. Add one to show it on the Portfolio page.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

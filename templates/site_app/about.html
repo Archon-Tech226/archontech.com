@@ -1,0 +1,59 @@
+{% extends "site_app/base.html" %}
+{% load static %}
+{% block title %}About | Archon Tech{% endblock %}
+{% block description %}Archon Tech is a remote team building websites, social media content, web applications and SaaS products for growing businesses.{% endblock %}
+{% block content %}
+    <section class="page-hero">
+      <div class="wrap about-top">
+        <div>
+          <span class="eyebrow-line" aria-hidden="true"></span>
+          <h1>A small, remote team that builds things properly.</h1>
+          <p class="lede">Archon Tech helps small and growing businesses get the websites, tools and social presence they need, built around how they actually work.</p>
+          <div class="about-links">
+            <a class="btn" href="{% url 'contact' %}">Start a project</a>
+            <a class="btn btn--ghost" href="{% url 'portfolio' %}">See our work</a>
+          </div>
+        </div>
+        <div class="logo-panel">
+          <img src="{% static 'logo13.png' %}" alt="Archon Tech logo" width="255" height="215">
+        </div>
+      </div>
+    </section>
+
+    <section class="section--tight section--rule">
+      <div class="wrap about-grid">
+        <div>
+          <h2>What we build</h2>
+          <p class="lede">Four services, handled by one team: web development, social media marketing, web applications and SaaS products.</p>
+          <p>We work as a small, remote team, which keeps us close to every project instead of spreading thin across too many clients at once. Each site or application is built around what the business needs, not a template stretched to fit.</p>
+          <p>We help businesses that want a clearer online presence, a tool to replace manual work, or a first version of a product idea. <a href="{% url 'services' %}">See the services in detail</a>.</p>
+        </div>
+        <ul class="values">
+          <li>
+            <h3>Built around the business</h3>
+            <p>We start by understanding how you work, then design and build around that, not the other way round.</p>
+          </li>
+          <li>
+            <h3>Clear communication</h3>
+            <p>You see progress as we build, not just a finished product at the end.</p>
+          </li>
+          <li>
+            <h3>Support after launch</h3>
+            <p>A project isn't done the day it goes live. We stay available for fixes and updates.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section--tight">
+      <div class="wrap">
+        <div class="cta">
+          <div>
+            <h2>Want to work with us?</h2>
+            <p>Tell us about your business and what you're trying to build, or <a href="{% url 'team' %}" style="color:inherit;text-decoration:underline">meet the team</a> first.</p>
+          </div>
+          <a class="btn btn--light" href="{% url 'contact' %}">Start a project</a>
+        </div>
+      </div>
+    </section>
+{% endblock %}

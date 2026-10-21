@@ -1,0 +1,39 @@
+{% extends "dashboard/base.html" %}
+{% block title %}Leads{% endblock %}
+{% block page_title %}Leads{% endblock %}
+{% block content %}
+  <div class="dash-toolbar">
+    <form method="get">
+      <input type="search" name="q" placeholder="Search name, email, message" value="{{ q }}">
+      <select name="status" onchange="this.form.submit()">
+        <option value="">All statuses</option>
+        {% for value, label in status_choices %}
+          <option value="{{ value }}" {% if value == status %}selected{% endif %}>{{ label }}</option>
+        {% endfor %}
+      </select>
+      <label style="display:inline-flex;gap:0.4rem;align-items:center;font-size:0.9rem"><input type="checkbox" name="followup" value="1" {% if request.GET.followup %}checked{% endif %} onchange="this.form.submit()"> Follow-up due</label>
+      <button class="btn btn--small" type="submit">Filter</button>
+    </form>
+  </div>
+
+  <div class="dash-table-wrap">
+    <table class="dash-table">
+      <thead>
+        <tr><th>Name</th><th>Service</th><th>Status</th><th>Follow-up</th><th>Received</th></tr>
+      </thead>
+      <tbody>
+        {% for lead in leads %}
+          <tr>
+            <td><a class="row-link" href="{% url 'dashboard:lead_detail' lead.pk %}">{{ lead.name }}</a><br><span class="muted" style="color:var(--muted);font-size:0.84rem">{{ lead.email }}</span></td>
+            <td>{{ lead.service|default:"\u2014" }}</td>
+            <td><span class="status-badge status-{{ lead.status }}">{{ lead.get_status_display }}</span></td>
+            <td style="color:var(--muted)">{{ lead.follow_up_date|date:"j M Y"|default:"\u2014" }}</td>
+            <td style="color:var(--muted)">{{ lead.created_at|date:"j M Y" }}</td>
+          </tr>
+        {% empty %}
+          <tr class="empty-row"><td colspan="5">No leads match. New enquiries from the Contact page appear here.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

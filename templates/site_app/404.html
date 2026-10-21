@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <script>try{if(localStorage.getItem("archon-theme")==="light"){document.documentElement.setAttribute("data-theme","light");}}catch(e){}</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page not found | Archon Tech</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#0a0e17">
+  <link rel="icon" href="{% static 'logo13.png' %}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;600;700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+  <div class="bg-fx" aria-hidden="true">
+    <span class="bolt bolt--1"></span>
+    <span class="bolt bolt--2"></span>
+    <span class="bolt bolt--3"></span>
+  </div>
+  <header class="site-header">
+    <div class="wrap bar">
+      <a class="brand" href="/">
+        <img src="{% static 'logo13.png' %}" alt="">
+        <span>Archon Tech</span>
+      </a>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="wrap error-page">
+      <span class="code" aria-hidden="true">404</span>
+      <h1>This page doesn't exist.</h1>
+      <p>The link may be old, or the page may have moved. Try the homepage, or head to one of the pages below.</p>
+      <a class="btn" href="/">Back to home</a>
+      <div class="error-links">
+        <a class="btn btn--ghost btn--small" href="/services/">Services</a>
+        <a class="btn btn--ghost btn--small" href="/portfolio/">Portfolio</a>
+        <a class="btn btn--ghost btn--small" href="/contact/">Contact</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p class="footer-note">&copy; {% now "Y" %} Archon Tech.</p>
+    </div>
+  </footer>
+</body>
+</html>

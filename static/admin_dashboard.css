@@ -1,0 +1,85 @@
+/* Live admin dashboard. Uses Django admin's own colour variables, so it follows light/dark automatically. */
+#live-dash { --ld-card: var(--darkened-bg, #f8f8f8); --ld-line: var(--hairline-color, #ddd); --ld-accent: #0a766f; margin-bottom: 1.5rem; }
+.ld-top { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between; align-items: flex-end; margin-bottom: 1rem; }
+.ld-title { margin: 0; font-size: 1.5rem; color: var(--body-fg); }
+.ld-sub { margin: 0.25rem 0 0; color: var(--body-quiet-color); font-size: 0.85rem; }
+.ld-dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: #999; margin-right: 0.45rem; }
+.ld-dot.on { background: #22c55e; animation: ldpulse 2s infinite; }
+.ld-dot.err { background: #ef4444; }
+@keyframes ldpulse { 0% { box-shadow: 0 0 0 0 rgba(34,197,94,.6);} 70% { box-shadow: 0 0 0 8px rgba(34,197,94,0);} 100% { box-shadow: 0 0 0 0 rgba(34,197,94,0);} }
+.ld-controls, .ld-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
+.ld-actions { margin-bottom: 1.25rem; }
+.ld-btn, .ld-seg button {
+  font: 600 0.85rem var(--font-family-primary, sans-serif); padding: 0.55rem 0.95rem; border-radius: 8px; cursor: pointer;
+  border: 1px solid var(--ld-line); background: var(--ld-card); color: var(--body-fg); text-decoration: none; min-height: 2.5rem;
+  display: inline-flex; align-items: center; transition: transform .12s, border-color .12s, background .12s;
+}
+.ld-btn:hover, .ld-seg button:hover { border-color: var(--ld-accent); transform: translateY(-1px); color: var(--body-fg); }
+.ld-btn:focus-visible, .ld-seg button:focus-visible, .ld-card:focus-visible { outline: 3px solid #14cfc4; outline-offset: 2px; }
+.ld-btn--primary { background: var(--ld-accent); border-color: var(--ld-accent); color: #fff; }
+.ld-btn--primary:hover { background: #075b56; color: #fff; }
+.ld-btn[aria-pressed="true"] { border-color: var(--ld-accent); }
+.ld-seg { display: inline-flex; gap: 0; }
+.ld-seg button { border-radius: 0; }
+.ld-seg button:first-child { border-radius: 8px 0 0 8px; } .ld-seg button:last-child { border-radius: 0 8px 8px 0; }
+.ld-seg button[aria-pressed="true"] { background: var(--ld-accent); border-color: var(--ld-accent); color: #fff; }
+.ld-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(10.5rem, 1fr)); gap: 0.85rem; margin-bottom: 1.25rem; }
+.ld-card { display: flex; flex-direction: column; gap: 0.2rem; padding: 1rem 1.1rem; border-radius: 12px; border: 1px solid var(--ld-line); background: var(--ld-card); text-decoration: none; color: var(--body-fg); transition: transform .15s, border-color .15s; }
+.ld-card:hover { transform: translateY(-3px); border-color: var(--ld-accent); color: var(--body-fg); }
+.ld-card--accent { background: linear-gradient(135deg, #0a766f, #075b56); border-color: transparent; color: #fff; }
+.ld-card--accent:hover { color: #fff; }
+.ld-card--accent .ld-label { color: #e6fbf9; }
+.ld-num { font-size: 2rem; font-weight: 700; line-height: 1.1; }
+.ld-num.bump { animation: ldbump .6s; }
+@keyframes ldbump { 0% { transform: scale(1);} 40% { transform: scale(1.25); color: #22c55e;} 100% { transform: scale(1);} }
+.ld-label { font-size: 0.82rem; color: var(--body-quiet-color); }
+.ld-label small { opacity: .8; }
+.ld-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 1rem; }
+@media (max-width: 900px) { .ld-grid { grid-template-columns: 1fr; } }
+.ld-panel { border: 1px solid var(--ld-line); border-radius: 12px; padding: 1rem 1.1rem; background: var(--ld-card); }
+.ld-panel h3 { margin: 0 0 0.75rem; font-size: 1rem; color: var(--body-fg); text-transform: none; background: none; padding: 0; }
+.ld-chart { display: flex; align-items: flex-end; gap: 4px; height: 11rem; padding-top: 1rem; }
+.ld-bar { flex: 1; min-width: 4px; background: var(--ld-accent); border-radius: 4px 4px 0 0; position: relative; min-height: 2px; transition: height .5s ease, background .15s; cursor: default; }
+.ld-bar:hover, .ld-bar:focus { background: #9d4edd; outline: none; }
+.ld-bar::after { content: attr(data-tip); position: absolute; bottom: calc(100% + 6px); left: 50%; transform: translateX(-50%); white-space: nowrap; background: #111; color: #fff; font-size: 0.72rem; padding: 3px 7px; border-radius: 5px; opacity: 0; pointer-events: none; transition: opacity .12s; z-index: 2; }
+.ld-bar:hover::after, .ld-bar:focus::after { opacity: 1; }
+.ld-pipeline { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem; }
+.ld-pill { font-size: 0.78rem; font-weight: 600; padding: 0.25rem 0.65rem; border-radius: 999px; color: #fff; }
+.st-new { background: #0a766f; } .st-contacted { background: #1d4ed8; } .st-quoted { background: #7c2fc2; } .st-won { background: #166534; } .st-lost { background: #b42323; }
+.ld-recent { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
+.ld-recent li { display: grid; gap: 0.4rem; padding: 0.7rem 0.8rem; border: 1px solid var(--ld-line); border-radius: 10px; background: var(--body-bg); }
+.ld-recent li.fresh { animation: ldfresh 2.5s; }
+@keyframes ldfresh { 0% { border-color: #22c55e; background: rgba(34,197,94,.15);} 100% { border-color: var(--ld-line);} }
+.ld-row-top { display: flex; justify-content: space-between; gap: 0.5rem; align-items: baseline; }
+.ld-row-top a { font-weight: 700; color: var(--link-fg); }
+.ld-meta { font-size: 0.78rem; color: var(--body-quiet-color); }
+.ld-row-actions { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.ld-chip { font: 600 0.74rem sans-serif; padding: 0.3rem 0.6rem; border-radius: 999px; border: 1px solid var(--ld-line); background: transparent; color: var(--body-fg); cursor: pointer; min-height: 1.9rem; }
+.ld-chip:hover { border-color: var(--ld-accent); }
+.ld-chip[aria-pressed="true"] { background: var(--ld-accent); border-color: var(--ld-accent); color: #fff; }
+.ld-chip:focus-visible { outline: 3px solid #14cfc4; }
+.ld-empty { color: var(--body-quiet-color); }
+.ld-sec { margin: 1.75rem 0 0.5rem; font-size: 1.1rem; }
+.ld-toast { position: fixed; right: 1.25rem; bottom: 1.25rem; background: #111; color: #fff; padding: 0.7rem 1rem; border-radius: 10px; font-size: 0.88rem; opacity: 0; transform: translateY(10px); transition: all .2s; pointer-events: none; z-index: 999; }
+.ld-toast.show { opacity: 1; transform: none; }
+.ld-toast.err { background: #b42323; }
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+
+/* Full-width layout (Django caps the admin home at 600px) and link-colour overrides */
+.dashboard #content { width: auto; max-width: 1280px; }
+.dashboard.colMS, .dashboard .colMS, body.dashboard #content.colMS { margin-right: 0; }
+.dashboard #content-related { display: none; }
+#live-dash a.ld-btn, #live-dash a.ld-btn:link, #live-dash a.ld-btn:visited { color: var(--body-fg); }
+#live-dash a.ld-btn--primary, #live-dash a.ld-btn--primary:link, #live-dash a.ld-btn--primary:visited { color: #fff; }
+#live-dash a.ld-card, #live-dash a.ld-card:link, #live-dash a.ld-card:visited { color: var(--body-fg); }
+#live-dash a.ld-card--accent, #live-dash a.ld-card--accent:link, #live-dash a.ld-card--accent:visited { color: #fff; }
+#live-dash .ld-num { color: inherit; }
+#live-dash .ld-card:not(.ld-card--accent) .ld-num { color: var(--ld-accent); }
+@media (prefers-color-scheme: dark) { #live-dash .ld-card:not(.ld-card--accent) .ld-num { color: #5feae0; } }
+html[data-theme="dark"] #live-dash .ld-card:not(.ld-card--accent) .ld-num { color: #5feae0; }
+html[data-theme="light"] #live-dash .ld-card:not(.ld-card--accent) .ld-num { color: var(--ld-accent); }
+.ld-cards { grid-template-columns: repeat(4, 1fr); }
+@media (max-width: 900px) { .ld-cards { grid-template-columns: repeat(2, 1fr); } }
+.ld-grid { align-items: start; }
+.ld-chip { display: inline-flex; align-items: center; line-height: 1; }
+a.ld-chip, a.ld-chip:link, a.ld-chip:visited { color: var(--link-fg); }

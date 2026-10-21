@@ -1,0 +1,29 @@
+{% extends "dashboard/base.html" %}
+{% block title %}Testimonials{% endblock %}
+{% block page_title %}Testimonials{% endblock %}
+{% block topbar_actions %}<a class="btn btn--small" href="{% url 'dashboard:testimonial_add' %}">Add testimonial</a>{% endblock %}
+{% block content %}
+  <div class="dash-table-wrap">
+    <table class="dash-table">
+      <thead><tr><th>Client</th><th>Quote</th><th>Rating</th><th>Visible</th><th></th></tr></thead>
+      <tbody>
+        {% for item in items %}
+          <tr>
+            <td>{{ item.client_name }}{% if item.company %}<br><span style="color:var(--muted);font-size:0.84rem">{{ item.company }}</span>{% endif %}</td>
+            <td>{{ item.quote|truncatechars:60 }}</td>
+            <td>{{ item.stars }}</td>
+            <td><span class="status-badge {% if item.is_published %}status-published{% else %}status-draft{% endif %}">{% if item.is_published %}Visible{% else %}Hidden{% endif %}</span>{% if item.is_sample %} <span class="status-badge status-sample">Sample, never public</span>{% endif %}</td>
+            <td class="actions">
+              <a href="{% url 'dashboard:testimonial_edit' item.pk %}">Edit</a>
+              <form method="post" action="{% url 'dashboard:testimonial_delete' item.pk %}" onsubmit="return confirm('Delete this testimonial?')">
+                {% csrf_token %}<button type="submit" class="danger">Delete</button>
+              </form>
+            </td>
+          </tr>
+        {% empty %}
+          <tr class="empty-row"><td colspan="5">No testimonials yet. The public section stays hidden until a genuine, approved one is published.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

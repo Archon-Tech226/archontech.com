@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <script>
+    try {
+      if (localStorage.getItem("archon-theme") === "light") {
+        document.documentElement.setAttribute("data-theme", "light");
+      }
+    } catch (e) {}
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sign in | Archon Tech</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#0e0c18">
+  <link rel="icon" href="{% static 'logo13.png' %}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;600;700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'styles.css' %}">
+  <link rel="stylesheet" href="{% static 'dashboard.css' %}">
+</head>
+<body class="dash-login">
+  <div class="bg-fx" aria-hidden="true">
+    <span class="bolt bolt--1"></span>
+    <span class="bolt bolt--2"></span>
+    <span class="bolt bolt--3"></span>
+  </div>
+  <div class="dash-login-card">
+    <div class="dash-brand">
+      <img src="{% static 'logo13.png' %}" alt="">
+      <span>Archon Tech</span>
+    </div>
+    <h1>Team sign in</h1>
+    <form method="post">
+      {% csrf_token %}
+      <div class="field">
+        <label for="id_username">Username</label>
+        <input type="text" name="username" id="id_username" autocomplete="username" autofocus required>
+      </div>
+      <div class="field">
+        <label for="id_password">Password</label>
+        <input type="password" name="password" id="id_password" autocomplete="current-password" required>
+      </div>
+      {% if form.errors %}
+        <p class="form-status" data-state="error">Incorrect username or password.</p>
+      {% endif %}
+      <input type="hidden" name="next" value="{{ next }}">
+      <button class="btn" type="submit" style="width:100%">Sign in</button>
+    </form>
+  </div>
+</body>
+</html>

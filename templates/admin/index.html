@@ -1,0 +1,58 @@
+{% extends "admin/index.html" %}
+{% load static %}
+{% block extrastyle %}{{ block.super }}<link rel="stylesheet" href="{% static 'admin_dashboard.css' %}">{% endblock %}
+{% block content %}
+<div id="live-dash" data-stats-url="{% url 'admin_live_stats' %}" data-status-url="{% url 'admin_lead_status' %}" data-csrf="{{ csrf_token }}">
+  <div class="ld-top">
+    <div>
+      <h2 class="ld-title">Live overview</h2>
+      <p class="ld-sub"><span class="ld-dot" id="ld-dot"></span><span id="ld-state">Connecting…</span> <span id="ld-time"></span></p>
+    </div>
+    <div class="ld-controls">
+      <div class="ld-seg" role="group" aria-label="Chart range">
+        <button type="button" data-days="7" aria-pressed="false">7 days</button>
+        <button type="button" data-days="14" aria-pressed="true">14 days</button>
+        <button type="button" data-days="30" aria-pressed="false">30 days</button>
+      </div>
+      <button type="button" class="ld-btn" id="ld-pause" aria-pressed="false">Pause live updates</button>
+      <button type="button" class="ld-btn" id="ld-refresh">Refresh now</button>
+    </div>
+  </div>
+
+  <div class="ld-actions" aria-label="Quick actions">
+    <a class="ld-btn ld-btn--primary" href="{% url 'admin:site_app_blogpost_add' %}">+ Write a post</a>
+    <a class="ld-btn ld-btn--primary" href="{% url 'admin:site_app_portfolioproject_add' %}">+ Add project</a>
+    <a class="ld-btn ld-btn--primary" href="{% url 'admin:site_app_testimonial_add' %}">+ Add testimonial</a>
+    <a class="ld-btn" href="{% url 'admin:site_app_lead_changelist' %}">All leads</a>
+    <a class="ld-btn" href="{% url 'home' %}" target="_blank" rel="noopener">View site &nearr;</a>
+  </div>
+
+  <div class="ld-cards" id="ld-cards">
+    <a class="ld-card ld-card--accent" href="{% url 'admin:site_app_lead_changelist' %}"><span class="ld-num" data-card="leads_total">–</span><span class="ld-label">Total leads</span></a>
+    <a class="ld-card" href="{% url 'admin:site_app_lead_changelist' %}?status__exact=new"><span class="ld-num" data-card="leads_new">–</span><span class="ld-label">New, unreviewed</span></a>
+    <a class="ld-card" href="{% url 'admin:site_app_lead_changelist' %}"><span class="ld-num" data-card="leads_today">–</span><span class="ld-label">Leads today</span></a>
+    <a class="ld-card" href="{% url 'admin:site_app_lead_changelist' %}"><span class="ld-num" data-card="leads_week">–</span><span class="ld-label">Leads, last 7 days</span></a>
+    <a class="ld-card" href="{% url 'admin:site_app_lead_changelist' %}"><span class="ld-num" data-card="followups_due">–</span><span class="ld-label">Follow-ups due</span></a>
+    <a class="ld-card" href="{% url 'admin:site_app_blogpost_changelist' %}"><span class="ld-num" data-card="posts_published">–</span><span class="ld-label">Published posts <small id="ld-drafts"></small></span></a>
+    <a class="ld-card" href="{% url 'admin:site_app_portfolioproject_changelist' %}"><span class="ld-num" data-card="projects">–</span><span class="ld-label">Live projects</span></a>
+    <a class="ld-card" href="{% url 'admin:site_app_testimonial_changelist' %}"><span class="ld-num" data-card="testimonials">–</span><span class="ld-label">Approved testimonials</span></a>
+  </div>
+
+  <div class="ld-grid">
+    <section class="ld-panel" aria-labelledby="ld-chart-title">
+      <h3 id="ld-chart-title">Leads over time</h3>
+      <div id="ld-chart" class="ld-chart" role="img" aria-label="Bar chart of leads per day"></div>
+      <div id="ld-pipeline" class="ld-pipeline" aria-label="Lead pipeline"></div>
+    </section>
+    <section class="ld-panel" aria-labelledby="ld-recent-title">
+      <h3 id="ld-recent-title">Recent leads</h3>
+      <ul id="ld-recent" class="ld-recent"></ul>
+      <p class="ld-empty" id="ld-empty" hidden>No leads yet. Enquiries from the Contact page appear here instantly.</p>
+    </section>
+  </div>
+  <div class="ld-toast" id="ld-toast" role="status" aria-live="polite"></div>
+</div>
+<script src="{% static 'admin_dashboard.js' %}" defer></script>
+<h2 class="ld-sec">All models</h2>
+{{ block.super }}
+{% endblock %}

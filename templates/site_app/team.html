@@ -1,0 +1,55 @@
+{% extends "site_app/base.html" %}
+{% load static archon %}
+{% block title %}Team | Archon Tech{% endblock %}
+{% block description %}Meet the Archon Tech team: Abinaya Sri, Janaganandhini and Vel.{% endblock %}
+{% block content %}
+    <section class="page-hero">
+      <div class="wrap">
+        <span class="eyebrow-line" aria-hidden="true"></span>
+        <h1>The people behind Archon Tech</h1>
+        <p class="lede">A small team, directly involved in every project.</p>
+      </div>
+    </section>
+
+    <section class="section--tight">
+      <div class="wrap">
+        <div class="team-grid">
+          <article class="team-card">
+            <div class="team-photo"><img src="{% static 'founder.png' %}" alt="Portrait of Abinaya Sri, Founder of Archon Tech" width="597" height="1001" loading="lazy"></div>
+            <h3>Abinaya Sri</h3>
+            <p class="role">Founder</p>
+            <p class="edu">B.Sc. Artificial Intelligence &amp; Machine Learning, Sankara College of Science and Commerce</p>
+            <p class="bio">Abinaya founded Archon Tech to help small businesses get a professional online presence without the agency price tag. She leads the company's vision, client relationships and technical direction.</p>
+          </article>
+
+          <article class="team-card">
+            <div class="team-photo team-photo--initials" role="img" aria-label="Initials JN (no portrait provided)">JN</div>
+            <h3>Janaganandhini</h3>
+            <p class="role">Co-Founder</p>
+            <p class="edu">BCA, Tirupur Kumaran College</p>
+            <p class="bio">Janaganandhini co-founded Archon Tech and helps shape how the team plans, builds and delivers projects, keeping clients informed from first call to launch.</p>
+          </article>
+
+          <article class="team-card">
+            <div class="team-photo team-photo--initials" role="img" aria-label="Initial V (no portrait provided)">V</div>
+            <h3>Vel</h3>
+            <p class="role">Executive Officer</p>
+            <p class="edu">BE Computer Science Engineering, Rathinam College</p>
+            <p class="bio">Vel supports day-to-day operations and project delivery, helping turn client requirements into working software.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section--tight">
+      <div class="wrap">
+        <div class="cta">
+          <div>
+            <h2>Want to talk to the team?</h2>
+            <p>Reach out and we'll get back to you personally.</p>
+          </div>
+          <a class="btn btn--light" href="{% url 'contact' %}">Start a project</a>
+        </div>
+      </div>
+    </section>
+{% endblock %}

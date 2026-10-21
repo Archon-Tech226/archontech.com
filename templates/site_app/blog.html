@@ -1,0 +1,59 @@
+{% extends "site_app/base.html" %}
+{% load archon %}
+{% block title %}Behind the Build | Archon Tech{% endblock %}
+{% block description %}Practical articles and short notes from the Archon Tech team on websites, SEO, web applications and SaaS.{% endblock %}
+{% block content %}
+    <section class="page-hero">
+      <div class="wrap">
+        <span class="eyebrow-line" aria-hidden="true"></span>
+        <h1>Behind the Build</h1>
+        <p class="lede">Practical guides and short notes from the team on websites, SEO, web applications and products.</p>
+      </div>
+    </section>
+
+    <section class="section--tight">
+      <div class="wrap">
+        <div class="auth-bar">
+          <span class="who">{% if request.user.is_authenticated %}Signed in as {{ request.user.get_full_name|default:request.user.username }}{% endif %}</span>
+          {% if request.user.is_authenticated %}
+            <a class="btn btn--small" href="{% url 'dashboard:blog_add' %}">Write a post</a>
+            <a class="btn btn--ghost btn--small" href="{% url 'dashboard:home' %}">Dashboard</a>
+          {% else %}
+            <a class="btn btn--ghost btn--small" href="{% url 'dashboard:login' %}?next={% url 'dashboard:blog_list' %}">Team sign in</a>
+          {% endif %}
+        </div>
+
+        <div class="article-grid">
+          {% for post in articles %}
+            <article class="article-card">
+              <img class="cover" src="{{ post|cover_url }}" alt="" width="800" height="450" loading="lazy">
+              <div class="inner">
+                <p class="meta">{% if post.category %}<span class="cat">{{ post.category }}</span> &middot; {% endif %}{{ post.created_at|date:"j M Y" }}</p>
+                <h2><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
+                <p>{{ post.excerpt }}</p>
+                <a class="more" href="{{ post.get_absolute_url }}">Read article<span class="sr-only">: {{ post.title }}</span> &rarr;</a>
+              </div>
+            </article>
+          {% empty %}
+            <p class="empty-box">No articles yet. Run <code>python manage.py seed_blog_posts</code> or write one from the dashboard.</p>
+          {% endfor %}
+        </div>
+
+        {% if notes %}
+        <h2 style="margin-top:3rem;font-size:var(--text-xl)">Short notes</h2>
+        <div class="post-list" style="margin-top:1.25rem">
+          {% for post in notes %}
+            <article class="post">
+              <div class="post-head">
+                <span class="avatar" aria-hidden="true">{{ post.author_name|initials }}</span>
+                <span class="who">{{ post.author_name }}</span>
+                <span class="when">{{ post.created_at|date:"j M Y" }}</span>
+              </div>
+              <p class="post-body">{{ post.body }}</p>
+            </article>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+    </section>
+{% endblock %}

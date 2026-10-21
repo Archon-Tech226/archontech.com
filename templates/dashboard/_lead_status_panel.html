@@ -1,0 +1,24 @@
+{% load static %}
+<div class="panel">
+  <h2>Status</h2>
+  <p class="dash-note{% if lead.email_status == 'failed' %} warn{% endif %}">{{ lead.get_email_status_display }}.{% if lead.email_status != 'sent' %} This enquiry is saved here either way.{% endif %}</p>
+  <p style="margin-bottom:1rem"><span class="status-badge status-{{ lead.status }}">{{ lead.get_status_display }}</span>
+    {% if saved %}<span style="color:var(--lime-deep);font-size:0.85rem;margin-left:0.6rem">&check; Saved</span>{% endif %}
+  </p>
+  <form method="post" action="{% url 'dashboard:lead_detail' lead.pk %}" hx-post="{% url 'dashboard:lead_detail' lead.pk %}" hx-target="#lead-status-panel" hx-swap="innerHTML">
+    {% csrf_token %}
+    <div class="field">
+      <label for="id_status">Status</label>
+      {{ form.status }}
+    </div>
+    <div class="field">
+      <label for="id_follow_up_date">Follow-up date</label>
+      {{ form.follow_up_date }}
+    </div>
+    <div class="field">
+      <label for="id_notes">Internal notes</label>
+      {{ form.notes }}
+    </div>
+    <button class="btn btn--small" type="submit">Save</button>
+  </form>
+</div>

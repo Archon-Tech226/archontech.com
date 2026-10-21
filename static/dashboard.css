@@ -1,0 +1,296 @@
+/* Archon Tech — Admin Dashboard
+   Reuses design tokens from styles.css (colors, fonts, shadows) so this
+   feels like the same product, not a bolted-on admin panel. */
+
+.dash-body {
+  background: var(--paper);
+  min-height: 100vh;
+  display: flex;
+}
+
+/* --- Sidebar ------------------------------------------------------- */
+.dash-sidebar {
+  width: 15.5rem;
+  flex-shrink: 0;
+  background: var(--surface);
+  border-right: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 1rem;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+.dash-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0 0.5rem;
+  margin-bottom: 2rem;
+  text-decoration: none;
+  color: var(--ink);
+  font: 700 1.05rem var(--font-head);
+}
+.dash-brand img { height: 1.9rem; width: auto; max-width: 1.9rem; object-fit: contain; }
+
+.dash-nav { display: flex; flex-direction: column; gap: 0.2rem; flex: 1; }
+.dash-nav a {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 0.75rem;
+  border-radius: 10px;
+  color: var(--muted);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.94rem;
+}
+.dash-nav a svg { width: 18px; height: 18px; flex-shrink: 0; }
+.dash-nav a:hover { background: var(--surface-2); color: var(--ink); }
+.dash-nav a.is-active { background: var(--tint); color: var(--indigo-deep); font-weight: 600; }
+:root[data-theme="light"] .dash-nav a.is-active { color: var(--indigo); }
+
+.dash-user {
+  border-top: 1px solid var(--line);
+  padding-top: 1rem;
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+.dash-user .avatar { width: 2.1rem; height: 2.1rem; font-size: 0.82rem; margin-bottom: 0; flex-shrink: 0; }
+.dash-user .who { font-size: 0.88rem; font-weight: 600; line-height: 1.2; }
+.dash-user .signout { font-size: 0.78rem; color: var(--muted); text-decoration: none; }
+.dash-user .signout:hover { color: var(--coral); }
+
+.sidebar-toggle {
+  display: none;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  align-items: center;
+  justify-content: center;
+}
+
+/* --- Main area ------------------------------------------------------- */
+.dash-main { flex: 1; min-width: 0; }
+.dash-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem clamp(1.25rem, 3vw, 2.5rem);
+  border-bottom: 1px solid var(--line);
+  background: var(--paper);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+.dash-topbar h1 { font-size: 1.3rem; }
+.dash-content { padding: clamp(1.25rem, 3vw, 2.5rem); max-width: 72rem; }
+
+/* --- Stat cards ------------------------------------------------------- */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 2.25rem;
+}
+.stat-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 1.4rem;
+  box-shadow: var(--shadow-card);
+}
+.stat-card .num { font: 700 2.1rem var(--font-head); display: block; }
+.stat-card .label { color: var(--muted); font-size: 0.86rem; margin-top: 0.25rem; }
+.stat-card.accent { background: linear-gradient(135deg, #0a766f 0%, #075b56 100%); border-color: transparent; }
+.stat-card.accent .num, .stat-card.accent .label { color: #fff; }
+.stat-card.accent .label { color: #e6fbf9; }
+@media (max-width: 900px) { .stat-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .stat-grid { grid-template-columns: 1fr; } }
+
+/* --- Panels / recent lists --------------------------------------------- */
+.dash-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+@media (max-width: 860px) { .dash-grid-2 { grid-template-columns: 1fr; } }
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 1.4rem;
+}
+.panel h2 { font-size: 1.02rem; margin-bottom: 1rem; }
+.panel-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 0.65rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.92rem;
+}
+.panel-row:first-of-type { border-top: none; }
+.panel-row .muted { color: var(--muted); font-size: 0.84rem; }
+
+/* --- Toolbar (filters/search above a table) ----------------------------- */
+.dash-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+}
+.dash-toolbar form { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+.dash-toolbar input[type="search"],
+.dash-toolbar select {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--ink);
+  padding: 0.5rem 0.8rem;
+  font-size: 0.9rem;
+}
+
+/* --- Tables ------------------------------------------------------- */
+.dash-table-wrap {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow-x: auto;
+}
+.dash-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+.dash-table th {
+  text-align: left;
+  padding: 0.85rem 1.1rem;
+  color: var(--muted);
+  font-weight: 600;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid var(--line);
+}
+.dash-table td {
+  padding: 0.85rem 1.1rem;
+  border-bottom: 1px solid var(--line);
+  vertical-align: middle;
+}
+.dash-table tr:last-child td { border-bottom: none; }
+.dash-table tbody tr { transition: background-color 0.1s; }
+.dash-table tbody tr:hover { background: var(--surface-2); }
+.dash-table a.row-link { color: var(--ink); text-decoration: none; font-weight: 600; }
+.dash-table a.row-link:hover { color: var(--indigo); }
+.dash-table .actions { display: flex; gap: 0.6rem; }
+.dash-table .actions a, .dash-table .actions button {
+  font-size: 0.84rem;
+  color: var(--muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  padding: 0;
+}
+.dash-table .actions a:hover { color: var(--indigo); }
+.dash-table .actions .danger:hover { color: var(--coral); }
+.empty-row td { text-align: center; color: var(--muted); padding: 2.5rem 1rem; }
+
+/* --- Status badges ------------------------------------------------- */
+.status-badge {
+  display: inline-block;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #fff;
+}
+.status-new { background: #0a766f; }
+.status-contacted { background: #1d4ed8; }
+.status-quoted { background: #7c2fc2; color: #fff; }
+.status-won { background: #166534; }
+.status-lost { background: #b42323; }
+.status-draft { background: var(--surface-2); color: var(--muted); border: 1px solid var(--line); }
+.status-published { background: #166534; color: #fff; }
+.status-sample { background: #b42323; color: #fff; }
+
+/* --- Forms (dashboard pages) ----------------------------------------- */
+.dash-form-wrap { max-width: 34rem; }
+.dash-form-wrap .field input,
+.dash-form-wrap .field select,
+.dash-form-wrap .field textarea { width: 100%; }
+.dash-form-actions { display: flex; gap: 0.75rem; align-items: center; margin-top: 0.5rem; }
+.checkbox-field { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 1.25rem; }
+.checkbox-field input { width: auto; }
+.checkbox-field label { font-weight: 500; font-size: 0.94rem; }
+
+/* --- Toasts ------------------------------------------------------- */
+.toast-stack {
+  position: fixed;
+  top: 1.25rem;
+  right: 1.25rem;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.toast {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--lime-deep);
+  border-radius: 10px;
+  padding: 0.85rem 1.1rem;
+  box-shadow: var(--shadow-card-hover);
+  font-size: 0.9rem;
+  min-width: 16rem;
+  animation: toast-in 0.2s ease-out;
+}
+.toast.error { border-left-color: var(--coral); }
+@keyframes toast-in {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* --- Login page ------------------------------------------------------- */
+.dash-login {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--paper);
+  padding: 1.5rem;
+}
+.dash-login-card {
+  width: 100%;
+  max-width: 22rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: var(--shadow-card-hover);
+}
+.dash-login-card .dash-brand { justify-content: center; margin-bottom: 1.75rem; }
+.dash-login-card h1 { font-size: 1.1rem; text-align: center; margin-bottom: 1.5rem; }
+
+@media (max-width: 860px) {
+  .dash-sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 50;
+    transform: translateX(-100%);
+    transition: transform 0.2s;
+    box-shadow: var(--shadow-header);
+  }
+  .dash-sidebar.is-open { transform: translateX(0); }
+  .sidebar-toggle { display: inline-flex; }
+}
+
+.dash-table-wrap { overflow-x: auto; }
+.dash-table { min-width: 34rem; }
+.thumb-sm { width: 4.5rem; height: 3rem; object-fit: cover; object-position: top; border-radius: 6px; background: var(--surface-2); display: block; }
+.quick-actions { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 1.5rem; }
+.dash-note { padding: 0.9rem 1rem; border: 1px solid var(--line); border-radius: 8px; color: var(--muted); margin-bottom: 1.25rem; }
+.dash-note.warn { border-color: #ff8a84; }

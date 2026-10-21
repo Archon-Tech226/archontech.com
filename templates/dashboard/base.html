@@ -1,0 +1,94 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <script>
+    try {
+      if (localStorage.getItem("archon-theme") === "light") {
+        document.documentElement.setAttribute("data-theme", "light");
+      }
+    } catch (e) {}
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Dashboard{% endblock %} | Archon Tech</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#0e0c18">
+  <link rel="icon" href="{% static 'logo13.png' %}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;600;700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'styles.css' %}">
+  <link rel="stylesheet" href="{% static 'dashboard.css' %}">
+  <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+</head>
+<body class="dash-body">
+  <div class="bg-fx" aria-hidden="true">
+    <span class="bolt bolt--1"></span>
+    <span class="bolt bolt--2"></span>
+    <span class="bolt bolt--3"></span>
+  </div>
+  <aside class="dash-sidebar" id="dash-sidebar">
+    <a class="dash-brand" href="{% url 'dashboard:home' %}">
+      <img src="{% static 'logo13.png' %}" alt="">
+      <span>Archon Tech</span>
+    </a>
+    <nav class="dash-nav">
+      <a href="{% url 'dashboard:home' %}" class="{% if active == 'home' %}is-active{% endif %}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>
+        Dashboard
+      </a>
+      <a href="{% url 'dashboard:leads_list' %}" class="{% if active == 'leads' %}is-active{% endif %}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 6l-10 7L2 6"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
+        Leads
+      </a>
+      <a href="{% url 'dashboard:blog_list' %}" class="{% if active == 'blog' %}is-active{% endif %}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>
+        Behind the Build
+      </a>
+      <a href="{% url 'dashboard:testimonial_list' %}" class="{% if active == 'testimonials' %}is-active{% endif %}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        Testimonials
+      </a>
+      <a href="{% url 'dashboard:portfolio_list' %}" class="{% if active == 'portfolio' %}is-active{% endif %}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+        Portfolio
+      </a>
+      <a href="/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14L21 3"/></svg>
+        View site
+      </a>
+    </nav>
+    <div class="dash-user">
+      <span class="avatar" aria-hidden="true">{{ request.user.username|slice:":2"|upper }}</span>
+      <div>
+        <div class="who">{{ request.user.get_full_name|default:request.user.username }}</div>
+        <a class="signout" href="{% url 'dashboard:logout' %}">Sign out</a>
+      </div>
+    </div>
+  </aside>
+
+  <div class="dash-main">
+    <div class="dash-topbar">
+      <div style="display:flex;align-items:center;gap:0.75rem">
+        <button class="sidebar-toggle" id="sidebar-toggle" type="button" aria-label="Toggle menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+        <h1>{% block page_title %}Dashboard{% endblock %}</h1>
+      </div>
+      {% block topbar_actions %}{% endblock %}
+    </div>
+    <div class="dash-content">
+      {% block content %}{% endblock %}
+    </div>
+  </div>
+
+  <div class="toast-stack" id="toast-stack">
+    {% for message in messages %}
+      <div class="toast {% if message.tags == 'error' %}error{% endif %}">{{ message }}</div>
+    {% endfor %}
+  </div>
+
+  <script src="{% static 'dashboard.js' %}"></script>
+</body>
+</html>

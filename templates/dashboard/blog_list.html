@@ -1,0 +1,29 @@
+{% extends "dashboard/base.html" %}
+{% block title %}Behind the Build{% endblock %}
+{% block page_title %}Behind the Build{% endblock %}
+{% block topbar_actions %}<a class="btn btn--small" href="{% url 'dashboard:blog_add' %}">Write a post</a>{% endblock %}
+{% block content %}
+  <div class="dash-table-wrap">
+    <table class="dash-table">
+      <thead><tr><th>Author</th><th>Post</th><th>Status</th><th>Date</th><th></th></tr></thead>
+      <tbody>
+        {% for post in posts %}
+          <tr>
+            <td>{{ post.author_name }}</td>
+            <td>{% if post.title %}{{ post.title|truncatechars:60 }}{% else %}{{ post.body|truncatechars:60 }}{% endif %}</td>
+            <td><span class="status-badge status-{{ post.status }}">{{ post.get_status_display }}</span></td>
+            <td style="color:var(--muted)">{{ post.created_at|date:"j M Y" }}</td>
+            <td class="actions">
+              <a href="{% url 'dashboard:blog_edit' post.pk %}">Edit</a>
+              <form method="post" action="{% url 'dashboard:blog_delete' post.pk %}" onsubmit="return confirm('Delete this post?')">
+                {% csrf_token %}<button type="submit" class="danger">Delete</button>
+              </form>
+            </td>
+          </tr>
+        {% empty %}
+          <tr class="empty-row"><td colspan="5">No posts yet. Write the first one, or run <code>python manage.py seed_blog_posts</code>.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

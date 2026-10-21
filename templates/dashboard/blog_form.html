@@ -1,0 +1,40 @@
+{% extends "dashboard/base.html" %}
+{% block title %}{% if post %}Edit post{% else %}Write a post{% endif %}{% endblock %}
+{% block page_title %}{% if post %}Edit post{% else %}Write a post{% endif %}{% endblock %}
+{% block content %}
+  <div class="dash-form-wrap">
+    <form method="post">
+      {% csrf_token %}
+      <div class="field">
+        <label for="id_author_name">Author name</label>
+        {{ form.author_name }}
+      </div>
+      <div class="field">
+        <label for="id_title">Title (leave blank for a short note)</label>
+        {{ form.title }}
+      </div>
+      <div class="field">
+        <label for="id_category">Category</label>
+        {{ form.category }}
+      </div>
+      <div class="field">
+        <label for="id_excerpt">Excerpt</label>
+        {{ form.excerpt }}
+      </div>
+      <div class="field">
+        <label for="id_body">Post</label>
+        <span class="help">Start a line with "## " for a heading and "- " for a bullet.</span>
+        {{ form.body }}
+      </div>
+      <div class="field">
+        <label for="id_status">Status</label>
+        {{ form.status }}
+      </div>
+      <div class="dash-form-actions">
+        <button class="btn" type="submit">Save</button>
+        {% if post and post.is_article %}<a href="{{ post.get_absolute_url }}" target="_blank" rel="noopener">Preview</a>{% endif %}
+        <a href="{% url 'dashboard:blog_list' %}" style="color:var(--muted)">Cancel</a>
+      </div>
+    </form>
+  </div>
+{% endblock %}

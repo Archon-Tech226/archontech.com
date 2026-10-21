@@ -1,0 +1,22 @@
+{% extends "dashboard/base.html" %}
+{% block title %}{{ lead.name }}{% endblock %}
+{% block page_title %}<a href="{% url 'dashboard:leads_list' %}" style="color:var(--muted);text-decoration:none">Leads /</a> {{ lead.name }}{% endblock %}
+{% block content %}
+  <div class="dash-grid-2">
+    <div class="panel">
+      <h2>Enquiry</h2>
+      <div class="panel-row"><span class="muted" style="color:var(--muted)">Name</span><span>{{ lead.name }}</span></div>
+      <div class="panel-row"><span class="muted" style="color:var(--muted)">Email</span><span><a href="mailto:{{ lead.email }}">{{ lead.email }}</a></span></div>
+      <div class="quick-actions" style="margin-top:1rem"><a class="btn btn--small" href="mailto:{{ lead.email }}?subject=Re: your enquiry to Archon Tech">Reply by email</a>{% if lead.phone %}<a class="btn btn--ghost btn--small" href="tel:{{ lead.phone }}">Call</a>{% endif %}</div>
+      {% if lead.phone %}<div class="panel-row"><span class="muted" style="color:var(--muted)">Phone</span><span><a href="tel:{{ lead.phone }}">{{ lead.phone }}</a></span></div>{% endif %}
+      <div class="panel-row"><span class="muted" style="color:var(--muted)">Service</span><span>{{ lead.service|default:"\u2014" }}</span></div>
+      <div class="panel-row"><span class="muted" style="color:var(--muted)">Received</span><span>{{ lead.created_at|date:"j M Y, g:i A" }}</span></div>
+      <h2 style="margin-top:1.5rem">Message</h2>
+      <p style="white-space:pre-wrap">{{ lead.message }}</p>
+    </div>
+
+    <div id="lead-status-panel">
+      {% include "dashboard/_lead_status_panel.html" %}
+    </div>
+  </div>
+{% endblock %}

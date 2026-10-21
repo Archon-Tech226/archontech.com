@@ -1,0 +1,63 @@
+{% extends "site_app/base.html" %}
+{% load static %}
+{% block title %}Portfolio | Archon Tech{% endblock %}
+{% block description %}Projects built by Archon Tech, labelled honestly as client work, internal projects or concept demos.{% endblock %}
+{% block content %}
+    <section class="page-hero">
+      <div class="wrap">
+        <span class="eyebrow-line" aria-hidden="true"></span>
+        <h1>What we've built</h1>
+        <p class="lede">Each project is labelled as client work, an internal project or a concept demo. Live links are added as projects are deployed.</p>
+      </div>
+    </section>
+
+    <section class="section--tight">
+      <div class="wrap">
+        <div class="filters" role="group" aria-label="Filter projects by type">
+          <button class="filter-btn" type="button" data-filter="all" aria-pressed="true">All</button>
+          <button class="filter-btn" type="button" data-filter="website" aria-pressed="false">Websites</button>
+          <button class="filter-btn" type="button" data-filter="app" aria-pressed="false">Web applications</button>
+        </div>
+
+        <div class="project-grid" id="project-grid">
+          {% for p in projects %}
+            <article class="project-card" data-type="{{ p.category }}">
+              {% if p.image %}
+                <img class="project-card-img" src="{{ p.image.url }}" alt="Screenshot of {{ p.title }}" width="1200" height="750" loading="lazy">
+              {% else %}
+                <div class="thumb-fallback" aria-hidden="true">No screenshot yet</div>
+              {% endif %}
+              <span class="kicker">{{ p.get_category_display }}{% if p.project_type %}<span class="badge">{{ p.get_project_type_display }}</span>{% endif %}</span>
+              <h3>{{ p.title }}</h3>
+              <p>{{ p.description }}</p>
+              {% if p.tag_list %}
+                <div class="tags">
+                  {% for tag in p.tag_list %}<span class="tag">{{ tag }}</span>{% endfor %}
+                </div>
+              {% endif %}
+              {% if p.live_url %}
+                <p style="margin-top:0.9rem"><a href="{{ p.live_url }}" rel="noopener" target="_blank">Visit site<span class="sr-only"> for {{ p.title }} (opens in a new tab)</span> &rarr;</a></p>
+              {% endif %}
+            </article>
+          {% empty %}
+            <p class="empty-box">No projects are published yet. Add one from the dashboard and it will appear here.</p>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    <section class="section--tight">
+      <div class="wrap">
+        <div class="cta">
+          <div>
+            <h2>Have something similar in mind?</h2>
+            <p>Tell us about your project and we'll figure out the right approach together.</p>
+          </div>
+          <a class="btn btn--light" href="{% url 'contact' %}">Start a project</a>
+        </div>
+      </div>
+    </section>
+{% endblock %}
+{% block extra_scripts %}
+  <script src="{% static 'portfolio-filter.js' %}"></script>
+{% endblock %}

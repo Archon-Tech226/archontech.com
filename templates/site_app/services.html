@@ -1,0 +1,88 @@
+{% extends "site_app/base.html" %}
+{% block title %}Services | Archon Tech{% endblock %}
+{% block description %}Web development, social media marketing, web applications and SaaS products from Archon Tech: who each is for, what is included and how it works.{% endblock %}
+{% block content %}
+    <section class="page-hero">
+      <div class="wrap">
+        <span class="eyebrow-line" aria-hidden="true"></span>
+        <h1>Four services. One team.</h1>
+        <p class="lede">Web development, social media marketing, web applications and SaaS products. Take one on its own or combine them.</p>
+        <nav class="svc-nav" aria-label="Jump to a service">
+          {% for s in services %}<a class="btn btn--ghost btn--small" href="#{{ s.slug }}">{{ s.name }}</a>{% endfor %}
+        </nav>
+      </div>
+    </section>
+
+    <section class="section--tight">
+      <div class="wrap">
+        {% for s in services %}
+        <article class="svc-detail" id="{{ s.slug }}" aria-labelledby="{{ s.slug }}-title">
+          <div>
+            <span class="num">{{ s.num }}</span>
+            <h2 id="{{ s.slug }}-title">{{ s.name }}</h2>
+            <p class="headline">{{ s.headline }}</p>
+          </div>
+          <div>
+            <p>{{ s.summary }}</p>
+            <h3>Who it is for</h3>
+            <p>{{ s.audience }}</p>
+            <h3>The problem it solves</h3>
+            <p>{{ s.need }}</p>
+            <h3>What you get</h3>
+            <ul>{% for d in s.deliverables %}<li>{{ d }}</li>{% endfor %}</ul>
+            <h3>How it works</h3>
+            <ol>{% for step in s.process %}<li>{{ step }}</li>{% endfor %}</ol>
+            <div class="boundary">
+              <h3>Scope boundaries</h3>
+              <p>{{ s.boundaries }}</p>
+            </div>
+            <div class="svc-faq">
+              {% for q, a in s.faq %}
+              <details><summary>{{ q }}</summary><p>{{ a }}</p></details>
+              {% endfor %}
+            </div>
+            <a class="btn" href="{% url 'contact' %}?service={{ s.enquiry|urlencode }}">{{ s.cta }}</a>
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="faq-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="faq-title">Common questions</h2>
+        </div>
+        <div class="faq">
+          <details class="faq-item">
+            <summary>Do you work with businesses outside Tamil Nadu?</summary>
+            <p>Yes. Archon Tech is a remote-first team, so we work with clients anywhere, over calls and messages.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Can I get just one service?</summary>
+            <p>Yes. Each service works on its own, though many clients combine a website or app with ongoing social media support.</p>
+          </details>
+          <details class="faq-item">
+            <summary>How long does a typical project take?</summary>
+            <p>It depends on scope. We give you a clear timeline after the discussion stage, once we know what is being built.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Do you offer support after launch?</summary>
+            <p>Yes. We stay available for fixes and updates once your project is live, with the details agreed up front.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section--tight">
+      <div class="wrap">
+        <div class="cta">
+          <div>
+            <h2>Not sure which service fits?</h2>
+            <p>Tell us what you're trying to do, and we'll suggest the right starting point.</p>
+          </div>
+          <a class="btn btn--light" href="{% url 'contact' %}?service=Not%20sure%20yet">Talk it through</a>
+        </div>
+      </div>
+    </section>
+{% endblock %}
