@@ -78,3 +78,68 @@ def lead_set_status(request):
 # Wrapped so only logged-in staff can reach them (same rule as the admin itself).
 live_stats_view = admin.site.admin_view(live_stats)
 lead_status_view = admin.site.admin_view(lead_set_status)
+
+
+# ---- Calendar -----------------------------------------------------------
+import calendar as _cal
+from datetime import date as _date
+
+
+def _parse_month(value):
+    try:
+        y, m = value.split("-")
+        y, m = int(y), int(m)
+        if 1 <= m <= 12 and 2000 <= y <= 2100:
+            return y, m
+    except (ValueError, AttributeError):
+        pass
+    today = timezone.localdate()
+    return today.year, today.month
+
+
+@require_GET
+def calendar_month(request):
+    y, m = _parse_month(request.GET.get("month", ""))
+    days_in_month = _cal.monthrange(y, m)[1]
+    first_weekday = _date(y, m, 1).weekday()  # Monday = 0
+    tz = timezone.get_current_timezone()
+    start = timezone.make_aware(timezone.datetime(y, m, 1), tz)
+    end = timezone.make_aware(timezone.datetime(y + (m == 12), (m % 12) + 1, 1), tz)
+    days = {}
+    for dt in Lead.objects.filter(created_at__gte=start, created_at__lt=end).values_list("created_at", flat=True):
+        d = timezone.localtime(dt).day
+        days.setdefault(str(d), {"leads": 0, "followups": 0})["leads"] += 1
+    for fd in Lead.objects.filter(follow_up_date__year=y, follow_up_date__month=m).exclude(
+            status__in=[Lead.WON, Lead.LOST]).values_list("follow_up_date", flat=True):
+        days.setdefault(str(fd.day), {"leads": 0, "followups": 0})["followups"] += 1
+    today = timezone.localdate()
+    return JsonResponse({
+        "year": y, "month": m, "label": _date(y, m, 1).strftime("%B %Y"),
+        "days_in_month": days_in_month, "first_weekday": first_weekday, "days": days,
+        "today": today.day if (today.year, today.month) == (y, m) else None,
+    })
+
+
+@require_GET
+def calendar_day(request):
+    try:
+        d = _date.fromisoformat(request.GET.get("date", ""))
+    except ValueError:
+        return JsonResponse({"error": "Invalid date"}, status=400)
+
+    def row(l, kind):
+        return {"id": l.pk, "name": l.name, "email": l.email, "service": l.service or "", "status": l.status,
+                "time": timezone.localtime(l.created_at).strftime("%I:%M %p"), "kind": kind,
+                "url": reverse("admin:site_app_lead_change", args=[l.pk])}
+
+    created = [row(l, "enquiry") for l in Lead.objects.filter(created_at__date=d)]
+    due = [row(l, "follow-up") for l in Lead.objects.filter(follow_up_date=d).exclude(
+        status__in=[Lead.WON, Lead.LOST])]
+    return JsonResponse({
+        "date": d.isoformat(), "label": d.strftime("%A, %d %B %Y"), "items": created + due,
+        "list_url": reverse("admin:site_app_lead_changelist") + f"?created_at__year={d.year}&created_at__month={d.month}&created_at__day={d.day}",
+    })
+
+
+calendar_month_view = admin.site.admin_view(calendar_month)
+calendar_day_view = admin.site.admin_view(calendar_day)

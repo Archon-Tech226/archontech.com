@@ -2,7 +2,7 @@
 {% load static %}
 {% block extrastyle %}{{ block.super }}<link rel="stylesheet" href="{% static 'admin_dashboard.css' %}">{% endblock %}
 {% block content %}
-<div id="live-dash" data-stats-url="{% url 'admin_live_stats' %}" data-status-url="{% url 'admin_lead_status' %}" data-csrf="{{ csrf_token }}">
+<div id="live-dash" data-stats-url="{% url 'admin_live_stats' %}" data-status-url="{% url 'admin_lead_status' %}" data-csrf="{{ csrf_token }}" data-cal-url="{% url 'admin_calendar' %}" data-day-url="{% url 'admin_calendar_day' %}">
   <div class="ld-top">
     <div>
       <h2 class="ld-title">Live overview</h2>
@@ -38,6 +38,31 @@
     <a class="ld-card" href="{% url 'admin:site_app_testimonial_changelist' %}"><span class="ld-num" data-card="testimonials">–</span><span class="ld-label">Approved testimonials</span></a>
   </div>
 
+  <section class="ld-panel ld-cal" aria-labelledby="ld-cal-title">
+    <div class="ld-cal-head">
+      <h3 id="ld-cal-title">Lead calendar</h3>
+      <div class="ld-cal-nav">
+        <button type="button" class="ld-btn" id="cal-prev" aria-label="Previous month">&larr;</button>
+        <strong id="cal-label" aria-live="polite"></strong>
+        <button type="button" class="ld-btn" id="cal-next" aria-label="Next month">&rarr;</button>
+        <button type="button" class="ld-btn" id="cal-today">Today</button>
+      </div>
+    </div>
+    <div class="ld-cal-body">
+      <div>
+        <div class="cal-grid cal-dow" aria-hidden="true"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span></div>
+        <div class="cal-grid" id="cal-days" role="grid" aria-label="Calendar"></div>
+        <p class="cal-legend"><span class="cal-dot cal-dot--lead"></span> Enquiries &nbsp; <span class="cal-dot cal-dot--fu"></span> Follow-ups due</p>
+      </div>
+      <div class="cal-day" id="cal-day" aria-live="polite">
+        <h4 id="cal-day-title">Pick a day</h4>
+        <p class="ld-meta" id="cal-day-hint">Click any date to see its enquiries and follow-ups.</p>
+        <ul class="ld-recent" id="cal-day-list"></ul>
+        <a class="ld-btn" id="cal-day-open" href="#" hidden>Open in leads list</a>
+      </div>
+    </div>
+  </section>
+
   <div class="ld-grid">
     <section class="ld-panel" aria-labelledby="ld-chart-title">
       <h3 id="ld-chart-title">Leads over time</h3>
@@ -53,6 +78,7 @@
   <div class="ld-toast" id="ld-toast" role="status" aria-live="polite"></div>
 </div>
 <script src="{% static 'admin_dashboard.js' %}" defer></script>
+<script src="{% static 'admin_calendar.js' %}" defer></script>
 <h2 class="ld-sec">All models</h2>
 {{ block.super }}
 {% endblock %}

@@ -1,0 +1,73 @@
+{% extends "admin/base_site.html" %}
+{% load i18n static %}
+{% block title %}{% if form.errors %}Error: {% endif %}Sign in | Archon Tech Admin{% endblock %}
+{% block extrastyle %}{{ block.super }}<link rel="stylesheet" href="{% static 'admin_login.css' %}">{% endblock %}
+{% block bodyclass %}{{ block.super }} login{% endblock %}
+{% block usertools %}{% endblock %}
+{% block nav-global %}{% endblock %}
+{% block nav-sidebar %}{% endblock %}
+{% block content_title %}{% endblock %}
+{% block nav-breadcrumbs %}{% endblock %}
+{% block content %}
+<div class="lg-shell">
+  <aside class="lg-brand" aria-hidden="false">
+    <div class="lg-orb lg-orb--1"></div><div class="lg-orb lg-orb--2"></div>
+    <a class="lg-logo" href="{% url 'home' %}"><img src="{% static 'logo13.png' %}" alt="" width="44" height="37"><span>Archon Tech</span></a>
+    <div class="lg-copy">
+      <h1>Run your studio from one place.</h1>
+      <p>Track enquiries, publish articles, manage projects and testimonials, all in one dashboard.</p>
+      <ul class="lg-points">
+        <li><span>◔</span> Live lead tracking and calendar</li>
+        <li><span>✎</span> Write and publish articles</li>
+        <li><span>▣</span> Portfolio and testimonials</li>
+      </ul>
+    </div>
+    <p class="lg-foot">© {% now "Y" %} Archon Tech. Team access only.</p>
+  </aside>
+
+  <main class="lg-panel">
+    <div class="lg-card">
+      <h2>Welcome back</h2>
+      <p class="lg-sub">Sign in to open your dashboard.</p>
+
+      {% if form.errors and not form.non_field_errors %}<p class="lg-error" role="alert">Please check your username and password.</p>{% endif %}
+      {% for error in form.non_field_errors %}<p class="lg-error" role="alert">{{ error }}</p>{% endfor %}
+      {% if user.is_authenticated %}
+        <p class="lg-error" role="alert">You are signed in as {{ username }} but don't have access to this page. Sign in with a different account below.</p>
+      {% endif %}
+
+      <form action="{{ app_path }}" method="post" id="login-form">{% csrf_token %}
+        <div class="lg-field">
+          <label for="id_username">Username</label>
+          <div class="lg-input"><span aria-hidden="true">👤</span>{{ form.username }}</div>
+          {{ form.username.errors }}
+        </div>
+        <div class="lg-field">
+          <label for="id_password">Password</label>
+          <div class="lg-input"><span aria-hidden="true">🔒</span>{{ form.password }}
+            <button type="button" id="lg-toggle" class="lg-eye" aria-label="Show password" aria-pressed="false">Show</button>
+          </div>
+          {{ form.password.errors }}
+          <input type="hidden" name="next" value="{{ next }}">
+        </div>
+        <button class="lg-submit" type="submit" id="lg-submit">Sign in</button>
+      </form>
+      <p class="lg-back"><a href="{% url 'home' %}">&larr; Back to website</a></p>
+    </div>
+  </main>
+</div>
+<script>
+(function () {
+  var pw = document.getElementById("id_password"), btn = document.getElementById("lg-toggle");
+  var u = document.getElementById("id_username"); if (u) { u.setAttribute("placeholder", "Your username"); u.focus(); }
+  if (pw) pw.setAttribute("placeholder", "Your password");
+  if (btn && pw) btn.addEventListener("click", function () {
+    var show = pw.type === "password"; pw.type = show ? "text" : "password";
+    btn.textContent = show ? "Hide" : "Show"; btn.setAttribute("aria-pressed", String(show));
+    btn.setAttribute("aria-label", show ? "Hide password" : "Show password");
+  });
+  var f = document.getElementById("login-form"), s = document.getElementById("lg-submit");
+  if (f && s) f.addEventListener("submit", function () { s.textContent = "Signing in…"; s.disabled = true; });
+})();
+</script>
+{% endblock %}

@@ -1,0 +1,56 @@
+/* Branded split-screen login. Self-contained: ignores the stock Django login styles. */
+body.login { background: #080d16; min-height: 100vh; }
+.login #header, .login .breadcrumbs, .login #nav-sidebar { display: none !important; }
+.login #container, .login .main, .login #content, .login #content-main { width: auto !important; min-width: 0 !important; max-width: none !important; margin: 0 !important; padding: 0 !important; border: 0 !important; background: none !important; box-shadow: none !important; display: block; }
+.lg-shell { display: grid; grid-template-columns: 1.1fr 1fr; min-height: 100vh; font-family: "Instrument Sans", "Segoe UI", system-ui, sans-serif; }
+.lg-brand { position: relative; overflow: hidden; padding: 2.5rem clamp(2rem, 5vw, 4.5rem); display: flex; flex-direction: column; justify-content: space-between; color: #e6edf3;
+  background: linear-gradient(145deg, #0a1b2b 0%, #0b2a38 45%, #1a1236 100%); }
+.lg-orb { position: absolute; border-radius: 50%; filter: blur(60px); opacity: .55; pointer-events: none; }
+.lg-orb--1 { width: 22rem; height: 22rem; background: #14cfc4; top: -6rem; left: -5rem; opacity: .28; }
+.lg-orb--2 { width: 26rem; height: 26rem; background: #9d4edd; bottom: -9rem; right: -6rem; opacity: .35; }
+.lg-logo { position: relative; display: inline-flex; align-items: center; gap: .7rem; color: #fff; font: 700 1.4rem "Bricolage Grotesque", sans-serif; text-decoration: none; }
+.lg-copy { position: relative; max-width: 30rem; }
+.lg-copy h1 { font: 700 clamp(2rem, 3.6vw, 3rem) "Bricolage Grotesque", sans-serif; line-height: 1.08; letter-spacing: -.03em; margin: 0 0 1rem; color: #fff; }
+.lg-copy p { color: #b8c7d6; font-size: 1.05rem; line-height: 1.6; margin: 0 0 1.5rem; }
+.lg-points { list-style: none; margin: 0; padding: 0; display: grid; gap: .75rem; }
+.lg-points li { display: flex; align-items: center; gap: .75rem; color: #e6edf3; font-weight: 600; }
+.lg-points span { display: inline-flex; width: 2rem; height: 2rem; align-items: center; justify-content: center; border-radius: 10px; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.14); color: #5feae0; }
+.lg-foot { position: relative; color: #7f93a8; font-size: .82rem; margin: 0; }
+.lg-panel { display: flex; align-items: center; justify-content: center; padding: 2rem; background: #0e1522; }
+.lg-card { width: 100%; max-width: 25rem; }
+.lg-card h2 { font: 700 1.9rem "Bricolage Grotesque", sans-serif; color: #fff; margin: 0 0 .35rem; letter-spacing: -.02em; }
+.lg-sub { color: #98a7b8; margin: 0 0 1.75rem; }
+.lg-field { margin-bottom: 1.1rem; }
+.lg-field label { display: block; color: #c3cfdb; font-weight: 600; font-size: .88rem; margin-bottom: .4rem; }
+.lg-input { display: flex; align-items: center; gap: .6rem; padding: 0 .9rem; border: 1.5px solid #2a3850; border-radius: 12px; background: #141c2b; transition: border-color .15s, box-shadow .15s; }
+.lg-input:focus-within { border-color: #14b8ad; box-shadow: 0 0 0 3px rgba(20,184,173,.28); }
+.lg-input span { opacity: .8; font-size: .95rem; }
+.lg-input input { flex: 1; width: 100%; border: 0 !important; background: transparent !important; color: #fff !important; padding: .85rem 0 !important; font-size: 1rem !important; min-height: 0 !important; box-shadow: none !important; outline: none !important; }
+.lg-input input::placeholder { color: #6b7d92; }
+.lg-eye { border: 0; background: transparent; color: #5feae0; font: 700 .8rem "Instrument Sans", sans-serif; cursor: pointer; padding: .4rem; border-radius: 8px; }
+.lg-eye:hover { background: rgba(255,255,255,.08); }
+.lg-eye:focus-visible { outline: 3px solid #14cfc4; }
+.lg-submit { width: 100%; margin-top: .5rem; padding: .95rem 1rem; border: 0; border-radius: 12px; cursor: pointer; font: 700 1rem "Instrument Sans", sans-serif; color: #fff;
+  background: linear-gradient(135deg, #0a766f, #7c2fc2); transition: transform .12s, filter .15s; min-height: 3rem; }
+.lg-submit:hover { transform: translateY(-1px); filter: brightness(1.1); }
+.lg-submit:disabled { opacity: .7; cursor: progress; }
+.lg-submit:focus-visible { outline: 3px solid #14cfc4; outline-offset: 2px; }
+.lg-error, .login .errorlist { color: #ff8a84; background: rgba(180,35,35,.18); border: 1px solid rgba(255,138,132,.4); border-radius: 10px; padding: .7rem .9rem; margin: 0 0 1rem; font-weight: 600; font-size: .9rem; list-style: none; }
+.login .lg-field .errorlist { background: none; border: 0; padding: .35rem 0 0; margin: 0; }
+.lg-back { margin: 1.5rem 0 0; text-align: center; }
+.lg-back a { color: #98a7b8; text-decoration: none; font-weight: 600; font-size: .9rem; }
+.lg-back a:hover { color: #5feae0; }
+@media (max-width: 860px) {
+  .lg-shell { grid-template-columns: 1fr; }
+  .lg-brand { padding: 1.5rem; min-height: 0; gap: 1.25rem; }
+  .lg-copy h1 { font-size: 1.7rem; } .lg-points, .lg-foot { display: none; }
+  .lg-panel { padding: 1.5rem; align-items: flex-start; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+/* Beat the admin theme's #content rules (ID specificity) */
+#content .lg-copy h1 { color: #fff; font-size: clamp(2rem, 3.6vw, 3rem); line-height: 1.08; margin: 0 0 1rem; letter-spacing: -.03em; }
+#content a.lg-logo, #content a.lg-logo:link, #content a.lg-logo:visited, #content a.lg-logo span { color: #fff; }
+#content .lg-card h2 { color: #fff; }
+#content .lg-back a, #content .lg-back a:link, #content .lg-back a:visited { color: #98a7b8; }
+#content .lg-back a:hover { color: #5feae0; }

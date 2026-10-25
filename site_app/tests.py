@@ -182,3 +182,39 @@ class AdminLiveDashboardTests(TestCase):
     def test_admin_home_renders_dashboard(self):
         self.client.force_login(self.su)
         self.assertContains(self.client.get("/admin/"), 'id="live-dash"')
+
+
+class AdminThemeAndCalendarTests(TestCase):
+    def setUp(self):
+        self.su = User.objects.create_superuser("boss2", "b@example.com", "pw-for-tests-123")
+        self.lead = Lead.objects.create(name="Cal", email="c@example.com", message="hi")
+
+    def test_login_page_is_custom(self):
+        r = self.client.get("/admin/login/")
+        self.assertContains(r, "Welcome back")
+        self.assertContains(r, 'id="lg-toggle"')
+
+    def test_every_model_screen_renders(self):
+        self.client.force_login(self.su)
+        call_command("seed_blog_posts", verbosity=0)
+        call_command("seed_sample_testimonials", verbosity=0)
+        for m in ["blogpost", "testimonial", "portfolioproject", "lead"]:
+            self.assertEqual(self.client.get(f"/admin/site_app/{m}/").status_code, 200, m)
+            self.assertEqual(self.client.get(f"/admin/site_app/{m}/add/").status_code, 200, m)
+        post = BlogPost.objects.first()
+        self.assertEqual(self.client.get(f"/admin/site_app/blogpost/{post.pk}/change/").status_code, 200)
+        self.assertEqual(self.client.get(f"/admin/site_app/lead/{self.lead.pk}/change/").status_code, 200)
+        self.assertContains(self.client.get("/admin/site_app/lead/"), "Mark as Won")
+
+    def test_calendar_endpoints(self):
+        self.client.force_login(self.su)
+        from django.utils import timezone
+        today = timezone.localdate()
+        m = self.client.get(reverse("admin_calendar") + f"?month={today.year}-{today.month:02d}").json()
+        self.assertEqual(m["days"][str(today.day)]["leads"], 1)
+        d = self.client.get(reverse("admin_calendar_day") + f"?date={today.isoformat()}").json()
+        self.assertEqual(len(d["items"]), 1)
+        self.assertEqual(self.client.get(reverse("admin_calendar_day") + "?date=bad").status_code, 400)
+
+    def test_calendar_requires_staff(self):
+        self.assertEqual(self.client.get(reverse("admin_calendar")).status_code, 302)

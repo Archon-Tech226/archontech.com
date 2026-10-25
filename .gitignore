@@ -9,9 +9,3 @@ media/
 *.log
 venv/
 env/
-
-.env
-db.sqlite3
-__pycache__/
-*.pyc
-staticfiles/
